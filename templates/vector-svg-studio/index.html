@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vector Studio — Mathematical SVG Logos & Geometry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-[#0A0B10] text-slate-100 font-sans min-h-screen p-8 lg:p-16 selection:bg-purple-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="max-w-6xl mx-auto mb-12">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-mono mb-4">
+      <i data-lucide="pen-tool" class="w-3.5 h-3.5"></i>
+      <span>OPENDESIGN VECTOR LAB</span>
+    </div>
+    <h1 class="text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3">
+      Vector Geometry & Brand Marks
+    </h1>
+    <p class="text-slate-400 text-base max-w-2xl">
+      Pure, scalable, mathematical SVG assets. Ready for instant copy-pasting, export, and production deployment.
+    </p>
+  </header>
+
+  <!-- Grid of SVG Assets -->
+  <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <!-- Vector 1: Isometric Quantum Cube -->
+    <div class="p-6 rounded-2xl bg-[#12141D] border border-white/10 flex flex-col justify-between group hover:border-purple-500/40 transition-all">
+      <div class="h-64 flex items-center justify-center bg-black/40 rounded-xl p-4 border border-white/5">
+        <svg class="w-36 h-36 drop-shadow-[0_10px_25px_rgba(139,92,246,0.3)] transition-transform group-hover:scale-105 duration-300" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="topFace" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#C084FC" />
+              <stop offset="100%" stop-color="#8B5CF6" />
+            </linearGradient>
+            <linearGradient id="leftFace" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7C3AED" />
+              <stop offset="100%" stop-color="#4C1D95" />
+            </linearGradient>
+            <linearGradient id="rightFace" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#A855F7" />
+              <stop offset="100%" stop-color="#6B21A8" />
+            </linearGradient>
+          </defs>
+          <!-- Isometric Top -->
+          <polygon points="100,30 160,65 100,100 40,65" fill="url(#topFace)" />
+          <!-- Isometric Left -->
+          <polygon points="40,65 100,100 100,170 40,135" fill="url(#leftFace)" />
+          <!-- Isometric Right -->
+          <polygon points="100,100 160,65 160,135 100,170" fill="url(#rightFace)" />
+          <!-- Inner Floating Core -->
+          <circle cx="100" cy="100" r="14" fill="#FFFFFF" opacity="0.9" />
+        </svg>
+      </div>
+      <div class="mt-4">
+        <span class="text-xs font-mono text-purple-400">ISOMETRIC 3D</span>
+        <h3 class="text-lg font-bold text-white mt-1">Quantum Core Mark</h3>
+        <p class="text-xs text-slate-400 mt-1">3-plane isometric projection with dynamic linear gradients.</p>
+      </div>
+    </div>
+
+    <!-- Vector 2: Cyber Nexus Vortex -->
+    <div class="p-6 rounded-2xl bg-[#12141D] border border-white/10 flex flex-col justify-between group hover:border-cyan-500/40 transition-all">
+      <div class="h-64 flex items-center justify-center bg-black/40 rounded-xl p-4 border border-white/5">
+        <svg class="w-36 h-36 drop-shadow-[0_10px_25px_rgba(6,182,212,0.3)] transition-transform group-hover:rotate-12 duration-500" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#22D3EE" />
+              <stop offset="100%" stop-color="#0284C7" />
+            </linearGradient>
+          </defs>
+          <!-- Concentric Interlocking Rings -->
+          <circle cx="100" cy="100" r="70" stroke="url(#cyanGrad)" stroke-width="6" stroke-dasharray="16 8" />
+          <circle cx="100" cy="100" r="48" stroke="#38BDF8" stroke-width="4" stroke-opacity="0.6" stroke-dasharray="8 6" />
+          <polygon points="100,60 135,120 65,120" stroke="#FFFFFF" stroke-width="4" fill="none" stroke-linejoin="round" />
+          <circle cx="100" cy="100" r="6" fill="#22D3EE" />
+        </svg>
+      </div>
+      <div class="mt-4">
+        <span class="text-xs font-mono text-cyan-400">TECH HUD</span>
+        <h3 class="text-lg font-bold text-white mt-1">Nexus Orbital Emblem</h3>
+        <p class="text-xs text-slate-400 mt-1">Concentric dashed geometry with nested telemetry markers.</p>
+      </div>
+    </div>
+
+    <!-- Vector 3: Bio Prism Helix -->
+    <div class="p-6 rounded-2xl bg-[#12141D] border border-white/10 flex flex-col justify-between group hover:border-emerald-500/40 transition-all">
+      <div class="h-64 flex items-center justify-center bg-black/40 rounded-xl p-4 border border-white/5">
+        <svg class="w-36 h-36 drop-shadow-[0_10px_25px_rgba(16,185,129,0.3)] transition-transform group-hover:scale-105 duration-300" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#34D399" />
+              <stop offset="100%" stop-color="#059669" />
+            </linearGradient>
+          </defs>
+          <!-- Overlapping Organic Petals -->
+          <path d="M100 30 C130 50 160 90 140 130 C120 170 80 170 60 130 C40 90 70 50 100 30 Z" fill="url(#emeraldGrad)" fill-opacity="0.85" />
+          <path d="M30 100 C50 70 90 40 130 60 C170 80 170 120 130 140 C90 160 50 130 30 100 Z" fill="#10B981" fill-opacity="0.5" style="mix-blend-mode: screen;" />
+        </svg>
+      </div>
+      <div class="mt-4">
+        <span class="text-xs font-mono text-emerald-400">ORGANIC MINIMAL</span>
+        <h3 class="text-lg font-bold text-white mt-1">Prism Helix Emblem</h3>
+        <p class="text-xs text-slate-400 mt-1">Cubic Bezier curve intersections with screen blend effects.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

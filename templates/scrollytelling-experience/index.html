@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura — A Cinematic ScrollCraft Experience</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&family=Space+Mono&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Syne', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+          },
+          colors: {
+            aura: {
+              black: '#070709',
+              slate: '#0F1015',
+              accent: '#E11D48', /* Single signature accent: Rose Red */
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom ScrollCraft Mechanics */
+    .sticky-stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .scroll-progress-line {
+      transform-origin: top left;
+    }
+    .text-tight {
+      letter-spacing: -0.04em;
+    }
+  </style>
+</head>
+<body class="bg-aura-black text-slate-100 font-sans antialiased selection:bg-aura-accent selection:text-white">
+
+  <!-- Fixed Top Scroll Progress Bar -->
+  <div class="fixed top-0 left-0 w-full h-[2px] bg-white/5 z-50">
+    <div id="scrollBar" class="h-full bg-aura-accent transition-all duration-75 w-0"></div>
+  </div>
+
+  <!-- Ambient Header -->
+  <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-40 px-6 py-2.5 rounded-full bg-aura-slate/80 backdrop-blur-xl border border-white/10 flex items-center gap-6 shadow-2xl">
+    <div class="flex items-center gap-2">
+      <div class="w-2.5 h-2.5 rounded-full bg-aura-accent animate-pulse"></div>
+      <span class="font-display font-bold text-sm tracking-tight text-white">AURA</span>
+    </div>
+    <span class="text-white/20 text-xs">|</span>
+    <span class="text-[11px] font-mono text-slate-400">GRAMMAR: SPLIT STAGE</span>
+    <span class="text-white/20 text-xs">|</span>
+    <span id="scrollPct" class="text-[11px] font-mono text-aura-accent">0%</span>
+  </nav>
+
+  <!-- ACT 1: INTRIGUE (Hero Monumental Typography) -->
+  <section class="h-screen flex flex-col justify-center items-center px-6 relative overflow-hidden">
+    <div class="absolute inset-0 bg-radial from-white/[0.03] to-transparent pointer-events-none"></div>
+
+    <div class="text-center max-w-4xl z-10">
+      <p class="font-mono text-xs uppercase tracking-[0.3em] text-aura-accent mb-6">ScrollCraft Signature Build</p>
+      <h1 class="text-6xl sm:text-8xl lg:text-9xl font-display font-extrabold text-white text-tight leading-[0.95] mb-8">
+        BEYOND <br/>
+        <span class="italic font-light text-slate-400">STATIC.</span>
+      </h1>
+      <p class="text-slate-400 text-base sm:text-lg max-w-lg mx-auto font-light leading-relaxed">
+        An editorial visual voyage governed by motion rhythm, depth layers, and intentional feeling curves.
+      </p>
+    </div>
+
+    <!-- Scroll Cue -->
+    <div class="absolute bottom-10 flex flex-col items-center gap-2 text-slate-500 font-mono text-[11px]">
+      <span>SCROLL TO UNFOLD</span>
+      <div class="w-4 h-7 rounded-full border border-slate-700 flex items-start justify-center p-1">
+        <div class="w-1 h-2 bg-aura-accent rounded-full animate-bounce"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACT 2: SPLIT STAGE GRAMMAR (Sticky Narrative + Dynamic Rail) -->
+  <section class="relative min-h-[300vh] bg-aura-slate border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+      <!-- Left Column: Pinned Sticky Anchor -->
+      <div class="sticky top-0 h-screen flex flex-col justify-center py-20 z-10">
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-aura-accent/10 border border-aura-accent/20 text-aura-accent font-mono text-xs">
+            <span>ACT 02 • THE SPLIT STAGE</span>
+          </div>
+          <h2 class="text-4xl sm:text-5xl font-display font-bold text-white text-tight leading-tight">
+            Independent visual planes creating authentic depth.
+          </h2>
+          <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-md">
+            While the narrative anchor remains locked in focal view, the content stream advances across carefully orchestrated scroll checkpoints.
+          </p>
+
+          <div class="pt-6 border-t border-white/10 flex items-center gap-8 font-mono text-xs text-slate-500">
+            <div>
+              <span class="block text-white text-lg font-bold">120 FPS</span>
+              <span>GPU Accelerated</span>
+            </div>
+            <div>
+              <span class="block text-white text-lg font-bold">0 Tropes</span>
+              <span>Anti-Generic Rules</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Dynamic Scrolling Rail -->
+      <div class="py-32 space-y-32">
+
+        <!-- Stage Card 1 -->
+        <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
+          <span class="font-mono text-xs text-aura-accent mb-2 block">PLANE 01</span>
+          <h3 class="text-2xl font-bold font-display text-white mb-3">Atmospheric Ground</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            The deepest layer hosts subtle lighting gradients and spatial geometry that react with low-multiplier parallax displacement.
+          </p>
+          <div class="mt-6 h-48 rounded-xl bg-black/50 border border-white/5 flex items-center justify-center">
+            <svg class="w-16 h-16 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Stage Card 2 -->
+        <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
+          <span class="font-mono text-xs text-aura-accent mb-2 block">PLANE 02</span>
+          <h3 class="text-2xl font-bold font-display text-white mb-3">The Midground Subject</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            High-contrast cards, typography, and interactive components floating with crisp edge highlights and translucent glass backdrops.
+          </p>
+          <div class="mt-6 h-48 rounded-xl bg-gradient-to-tr from-aura-accent/20 to-black border border-aura-accent/30 flex items-center justify-center p-6 text-center">
+            <span class="font-display font-extrabold text-2xl text-white">Dynamic Focal Peak</span>
+          </div>
+        </div>
+
+        <!-- Stage Card 3 -->
+        <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md">
+          <span class="font-mono text-xs text-aura-accent mb-2 block">PLANE 03</span>
+          <h3 class="text-2xl font-bold font-display text-white mb-3">Foreground Micro-HUD</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Crisp technical telemetry markers, progress bars, and directional indicators that remain pinned on the user's viewport.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ACT 3: THE ENGINEERED PEAK (Resolution) -->
+  <section class="min-h-screen flex flex-col justify-center items-center px-6 py-24 text-center relative">
+    <div class="max-w-3xl">
+      <div class="w-16 h-16 rounded-full bg-aura-accent/10 border border-aura-accent/30 text-aura-accent flex items-center justify-center mx-auto mb-8 shadow-xl shadow-aura-accent/20">
+        <i data-lucide="compass" class="w-8 h-8"></i>
+      </div>
+      <h2 class="text-4xl sm:text-6xl font-display font-extrabold text-white text-tight mb-6">
+        Form and Motion in complete harmony.
+      </h2>
+      <p class="text-slate-400 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+        Combining OpenDesign brand tokens with ScrollCraft kinematic structures to produce unforgettable digital moments.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <button class="px-8 py-3.5 rounded-full bg-aura-accent text-white font-semibold text-sm hover:bg-rose-600 shadow-xl shadow-aura-accent/30 transition-all">
+          Explore All Grammars
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    lucide.createIcons();
+
+    // Scroll Progress Logic
+    window.addEventListener('scroll', () => {
+      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollCurrent = window.scrollY;
+      const progress = (scrollCurrent / scrollTotal) * 100;
+
+      const scrollBar = document.getElementById('scrollBar');
+      const scrollPct = document.getElementById('scrollPct');
+
+      if (scrollBar && scrollPct) {
+        scrollBar.style.width = `${progress}%`;
+        scrollPct.textContent = `${Math.round(progress)}%`;
+      }
+    });
+  </script>
+</body>
+</html>

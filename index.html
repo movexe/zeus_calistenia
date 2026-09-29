@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeuz Calistenia — El Arte de Dominar tu Cuerpo</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Poppins (Headings) & Figtree (Body) & Space Mono (Telemetry) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind Configuration with Zeuz Brand & ScrollCraft Depth Tokens -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Poppins', 'sans-serif'],
+            body: ['Figtree', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              primary: '#332E2C',      /* Dune - Tierra y Roca Rústica */
+              accent: '#D09F50',       /* Roti - Oro & Rayo de Zeus */
+              accentHover: '#b8863b',
+              secondary: '#709687',    /* Oxley - Verde Laurel / Naturaleza */
+              bgAccent: '#C9CBB4',     /* Foggy Gray - Mármol Rústico */
+              canvas: '#FAF9F6',       /* Fondo Cálido Orgánico */
+              darkSurface: '#201D1B',  /* Superficie Oscura */
+              voidBlack: '#141211',    /* Fondo Profundo Olimpo */
+            }
+          },
+          boxShadow: {
+            'gold': '0 10px 30px -5px rgba(208, 159, 80, 0.4)',
+            'rustic': '0 16px 40px -10px rgba(51, 46, 44, 0.18)',
+            'depth-3d': '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ================= SCROLLCRAFT ENGINE & DEPTH MECHANICS ================= */
+    :root {
+      --scroll: 0;
+      --mouse-x: 0px;
+      --mouse-y: 0px;
+    }
+
+    body {
+      font-family: 'Figtree', sans-serif;
+      background-color: #FAF9F6;
+      color: #332E2C;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .page-view {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .page-view.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .rustic-border {
+      border: 1px solid rgba(51, 46, 44, 0.12);
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, #E6BA6E 0%, #D09F50 50%, #B8863B 100%);
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FDE68A 0%, #D09F50 50%, #C08028 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Multi-Plane Depth Layers in Hero */
+    .hero-depth-container {
+      perspective: 1200px;
+      transform-style: preserve-3d;
+    }
+
+    .depth-layer-back {
+      transform: translateZ(-80px) scale(1.08);
+      transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+    }
+
+    .depth-layer-mid {
+      transform: translateZ(20px);
+      transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1);
+    }
+
+    .depth-layer-front {
+      transform: translateZ(60px);
+      transition: transform 0.1s cubic-bezier(0.2, 0, 0.2, 1);
+    }
+
+    /* Ambient Greek Meander Pattern */
+    .meander-pattern {
+      background-image: radial-gradient(#D09F50 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.08;
+    }
+
+    /* Floating WhatsApp Button Animation */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+      70% { transform: scale(1); box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    .whatsapp-float-btn {
+      animation: pulse-ring 2.8s infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-brand-accent selection:text-brand-voidBlack">
+
+  <!-- ================= TOP SCROLL PROGRESS BAR (SCROLLCRAFT) ================= -->
+  <div class="fixed top-0 left-0 w-full h-[3px] bg-black/10 z-50 pointer-events-none">
+    <div id="scrollProgressBar" class="h-full gold-gradient transition-all duration-75 w-0"></div>
+  </div>
+
+  <!-- ================= TOP ANNOUNCEMENT BANNER ================= -->
+  <div class="bg-brand-voidBlack text-brand-canvas py-2.5 px-4 text-center text-xs sm:text-sm font-medium border-b border-brand-accent/20 flex items-center justify-center gap-2 relative z-40">
+    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-accent text-brand-voidBlack font-bold text-[10px] uppercase tracking-wider shadow">
+      <i data-lucide="zap" class="w-3 h-3 fill-current"></i> Zeus Calistenia
+    </span>
+    <span>Inscripción Online con <strong>20% OFF en tu primera cuota</strong>. Cupón: <span class="font-mono text-brand-accent font-bold">ZEUS20</span></span>
+    <button onclick="openEnrollmentModal()" class="hidden sm:inline-block ml-2 text-xs text-brand-accent font-semibold underline hover:text-white transition-colors">Reclamar cupón &rarr;</button>
+  </div>
+
+  <!-- ================= MASTER HEADER / NAVBAR ================= -->
+  <header class="sticky top-0 z-40 bg-brand-canvas/95 backdrop-blur-md border-b border-brand-primary/10 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+      <!-- Brand Logo (1:1 Cropped Transparent PNG) -->
+      <a href="#inicio" onclick="navigateTo('inicio')" class="flex items-center gap-3.5 group">
+        <div class="h-14 w-14 rounded-2xl bg-brand-voidBlack/5 group-hover:bg-brand-accent/15 transition-all p-1 flex items-center justify-center overflow-hidden border border-brand-primary/10 shadow-sm">
+          <img src="assets/Logo zeuz calistenia.png" alt="Zeuz Calistenia Logo" class="h-full w-full object-contain transition-transform group-hover:scale-110 duration-300">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading font-extrabold text-xl tracking-tight text-brand-primary leading-none">
+            ZEUZ <span class="text-brand-accent">CALISTENIA</span>
+          </span>
+          <span class="text-[10px] font-mono font-bold tracking-widest text-brand-secondary uppercase mt-0.5">El Arte de Dominar tu Cuerpo</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+        <button onclick="navigateTo('inicio')" id="nav-inicio" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold transition-all text-brand-accent bg-brand-primary/5">Inicio</button>
+        <button onclick="navigateTo('clases')" id="nav-clases" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-brand-primary/80 hover:text-brand-primary hover:bg-brand-primary/5 transition-all">Clases & Precios</button>
+        <button onclick="navigateTo('entrenador')" id="nav-entrenador" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-brand-primary/80 hover:text-brand-primary hover:bg-brand-primary/5 transition-all">Entrenador</button>
+        <button onclick="navigateTo('tienda')" id="nav-tienda" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-brand-primary/80 hover:text-brand-primary hover:bg-brand-primary/5 transition-all">Tienda</button>
+        <button onclick="navigateTo('nosotros')" id="nav-nosotros" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-brand-primary/80 hover:text-brand-primary hover:bg-brand-primary/5 transition-all">Nosotros</button>
+      </nav>
+
+      <!-- Action Buttons & Cart -->
+      <div class="flex items-center gap-3">
+        <!-- Cart Drawer Button -->
+        <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-xl bg-white border border-brand-primary/10 text-brand-primary hover:border-brand-accent hover:text-brand-accent transition-all shadow-sm group">
+          <i data-lucide="shopping-bag" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+          <span id="cartBadgeCount" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-brand-accent text-brand-voidBlack font-bold text-[10px] flex items-center justify-center shadow">0</span>
+        </button>
+
+        <!-- CTA Button -->
+        <button onclick="openEnrollmentModal()" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl gold-gradient text-brand-voidBlack font-heading font-extrabold text-sm shadow-gold hover:opacity-95 transition-all transform hover:-translate-y-0.5">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>Inscríbete Online</span>
+        </button>
+
+        <!-- Mobile Hamburger -->
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-white border border-brand-primary/10 text-brand-primary">
+          <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-brand-primary/10 bg-brand-canvas px-4 pt-3 pb-6 space-y-2 shadow-lg">
+      <button onclick="navigateTo('inicio'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-base font-semibold text-brand-primary hover:bg-brand-primary/5">Inicio</button>
+      <button onclick="navigateTo('clases'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-base font-semibold text-brand-primary hover:bg-brand-primary/5">Clases & Precios</button>
+      <button onclick="navigateTo('entrenador'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-base font-semibold text-brand-primary hover:bg-brand-primary/5">Conoce al Entrenador</button>
+      <button onclick="navigateTo('tienda'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-base font-semibold text-brand-primary hover:bg-brand-primary/5">Tienda de Suplementos & Remeras</button>
+      <button onclick="navigateTo('nosotros'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-xl text-base font-semibold text-brand-primary hover:bg-brand-primary/5">Nuestra Historia & Valores</button>
+      <div class="pt-2">
+        <button onclick="openEnrollmentModal(); toggleMobileMenu()" class="w-full py-3.5 rounded-xl gold-gradient text-brand-voidBlack font-heading font-extrabold text-center shadow-gold flex items-center justify-center gap-2">
+          <i data-lucide="zap" class="w-4 h-4"></i>
+          <span>Inscribirme con 20% OFF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT VIEWS CONTAINER ================= -->
+  <main class="flex-grow">
+
+    <!-- ================================================================= -->
+    <!-- VIEW 1: INICIO (HOME)                                             -->
+    <!-- ================================================================= -->
+    <div id="view-inicio" class="page-view active">
+
+      <!-- ================= HERO WITH SCROLLCRAFT MULTI-LAYER DEPTH ================= -->
+      <section id="hero-section" class="relative min-h-[92vh] bg-brand-voidBlack text-brand-canvas overflow-hidden flex items-center py-16 lg:py-24 hero-depth-container">
+
+        <!-- LAYER 0 (Deep Background Ambient Ground) -->
+        <div class="absolute inset-0 meander-pattern pointer-events-none"></div>
+        <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-brand-accent/15 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-brand-secondary/20 rounded-full blur-[140px] pointer-events-none"></div>
+
+        <!-- LAYER 1 (Depth Parallax Grid & Calisthenics Geometry) -->
+        <div class="depth-layer-back absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+          <svg class="w-[850px] h-[850px] text-brand-accent" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.5">
+            <circle cx="100" cy="100" r="90" stroke-dasharray="4 4" />
+            <circle cx="100" cy="100" r="70" />
+            <circle cx="100" cy="100" r="50" stroke-dasharray="8 4" />
+            <line x1="100" y1="10" x2="100" y2="190" stroke-opacity="0.3" />
+            <line x1="10" y1="100" x2="190" y2="100" stroke-opacity="0.3" />
+          </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <!-- LAYER 2 (Foreground Headline & Typography) -->
+            <div class="depth-layer-front lg:col-span-7 text-center lg:text-left space-y-6">
+
+              <!-- Badge -->
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-brand-accent text-xs font-mono tracking-wider">
+                <i data-lucide="zap" class="w-3.5 h-3.5 fill-current text-brand-accent"></i>
+                <span>1° COMUNIDAD CALISTÉNICA DE LA CIUDAD</span>
+              </div>
+
+              <!-- Primary Hero Headline -->
+              <h1 class="text-4xl sm:text-6xl lg:text-7xl font-heading font-extrabold text-white tracking-tight leading-[1.05]">
+                EL ARTE DE <br/>
+                <span class="gold-gradient-text">DOMINAR TU CUERPO.</span>
+              </h1>
+
+              <!-- Hero Copy -->
+              <p class="text-brand-bgAccent text-base sm:text-lg max-w-2xl leading-relaxed font-light">
+                Entrena sin máquinas aburridas. Descubre el poder del peso corporal en nuestras <strong>2 salas indoor climatizadas</strong> y el <strong>patio al aire libre</strong> con un coach que te acompaña en cada dominada.
+              </p>
+
+              <!-- Action Buttons -->
+              <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+                <button onclick="openEnrollmentModal()" class="w-full sm:w-auto px-8 py-4 rounded-2xl gold-gradient text-brand-voidBlack font-heading font-extrabold text-base shadow-gold hover:scale-105 transition-all flex items-center justify-center gap-2.5">
+                  <i data-lucide="zap" class="w-5 h-5"></i>
+                  <span>Inscribirme con 20% OFF</span>
+                </button>
+                <button onclick="navigateTo('clases')" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-base transition-all flex items-center justify-center gap-2">
+                  <span>Explorar Clases</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- Telemetry Checklist -->
+              <div class="pt-6 grid grid-cols-3 gap-4 border-t border-white/10 text-xs sm:text-sm text-brand-bgAccent font-medium">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-brand-secondary"></div>
+                  <span>2 Salas Indoor con A/C</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-brand-accent"></div>
+                  <span>Patio Outdoor al Sol</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-brand-secondary"></div>
+                  <span>Vestuarios & Duchas</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- LAYER 3 (Midground Visual 3D Stack with Real Photos) -->
+            <div class="depth-layer-mid lg:col-span-5 relative">
+              <div class="relative mx-auto max-w-md">
+
+                <!-- Real Photo Card 1: Front Lever Outdoor in Patio (Background tilt) -->
+                <div class="absolute -top-6 -left-6 w-full h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl opacity-40 transform -rotate-3 scale-95 pointer-events-none">
+                  <img src="assets/476141575_3613754032249809_6232217730215978958_n.jpg" alt="Calistenia al aire libre" class="w-full h-full object-cover grayscale">
+                </div>
+
+                <!-- Real Photo Card 2: Main Focal Card with Planche & Coach -->
+                <div class="relative bg-brand-darkSurface border border-brand-accent/40 rounded-3xl p-5 shadow-depth-3d backdrop-blur-xl overflow-hidden space-y-4 transform hover:rotate-1 transition-transform duration-300">
+
+                  <!-- Card Visual Header -->
+                  <div class="relative h-60 rounded-2xl overflow-hidden border border-white/10 group">
+                    <img src="assets/815138765_18563115784078683_8130343843005147784_n.jpg" alt="Entrenamiento de Calistenia Planche" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+                    <!-- Floating Badge -->
+                    <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs">
+                      <span class="px-2.5 py-1 rounded-full bg-brand-accent text-brand-voidBlack font-bold font-mono">EN VIVO • SALA 1</span>
+                      <span class="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/20 font-mono">Técnica & Fuerza</span>
+                    </div>
+                  </div>
+
+                  <!-- Real Details Row -->
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="text-brand-accent font-bold">SEDE PROPIA ZEUZ</span>
+                      <span class="text-emerald-400 font-bold flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Abierto Hoy
+                      </span>
+                    </div>
+
+                    <!-- Mini Real Photo Thumbnails -->
+                    <div class="grid grid-cols-3 gap-2">
+                      <div class="h-16 rounded-xl overflow-hidden border border-white/10 relative group">
+                        <img src="assets/828495633_18565900648078683_4579590429606397536_n.jpg" alt="Coach guiando dominadas" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                      </div>
+                      <div class="h-16 rounded-xl overflow-hidden border border-white/10 relative group">
+                        <img src="assets/476380402_3616279348663944_3595975850690707223_n.jpg" alt="Patio calisténico" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                      </div>
+                      <div class="h-16 rounded-xl overflow-hidden border border-white/10 relative group">
+                        <img src="assets/828954272_18565900813078683_4150082873104382617_n.jpg" alt="Comunidad Zeuz" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                      </div>
+                    </div>
+
+                    <p class="text-[11px] text-brand-bgAccent/80 italic font-serif text-center pt-1">
+                      "Comenzamos en una plaza. Hoy somos la comunidad más fuerte de la ciudad."
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-brand-bgAccent/60 text-[10px] font-mono pointer-events-none">
+          <span>SCROLL PARA DESCUBRIR</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce text-brand-accent"></i>
+        </div>
+      </section>
+
+      <!-- ================= NUESTRA HISTORIA REAL CON FOTOS ================= -->
+      <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <!-- Left: Text Story -->
+            <div class="lg:col-span-6 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent font-semibold text-xs uppercase font-mono">
+                <i data-lucide="history" class="w-3.5 h-3.5"></i>
+                <span>Nuestra Historia Real</span>
+              </div>
+              <h2 class="text-3xl sm:text-5xl font-heading font-extrabold text-brand-primary leading-tight">
+                De una barra en la plaza a la primer comunidad calisténica de la ciudad.
+              </h2>
+              <p class="text-brand-textMuted text-base leading-relaxed">
+                Todo comenzó cuando nuestro fundador empezó a entrenar en solitario en las barras de la plaza pública. La gente que paseaba se quedaba asombrada viendo los movimientos con peso corporal y comenzaron a acercarse: <em>"¿Me enseñás cómo hacer una dominada?"</em>
+              </p>
+              <p class="text-brand-textMuted text-base leading-relaxed">
+                Poco a poco fuimos 5, luego 20, luego 50 atletas entrenando bajo el sol y la lluvia. Así nació la necesidad de un hogar propio: hoy contamos con <strong>2 salas cubiertas con aire acondicionado, patio al aire libre y tienda oficial</strong>, manteniendo intacta la hermandad de aquel primer día.
+              </p>
+
+              <div class="pt-2 flex items-center gap-4">
+                <button onclick="navigateTo('nosotros')" class="inline-flex items-center gap-2 font-heading font-bold text-brand-accent hover:text-brand-accentHover text-sm">
+                  <span>Conocer toda la historia y valores</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right: Real Photo Collage -->
+            <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+              <div class="space-y-4">
+                <div class="h-64 rounded-3xl overflow-hidden border border-brand-primary/10 shadow-md">
+                  <img src="assets/476141575_3613754032249809_6232217730215978958_n.jpg" alt="Entrenando al aire libre" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="h-44 rounded-3xl overflow-hidden border border-brand-primary/10 shadow-md">
+                  <img src="assets/828495633_18565900648078683_4579590429606397536_n.jpg" alt="Coach en sala indoor" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+              </div>
+              <div class="space-y-4 pt-6">
+                <div class="h-44 rounded-3xl overflow-hidden border border-brand-primary/10 shadow-md">
+                  <img src="assets/476380402_3616279348663944_3595975850690707223_n.jpg" alt="Patio calisténico Zeuz" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="h-64 rounded-3xl overflow-hidden border border-brand-primary/10 shadow-md">
+                  <img src="assets/491755608_1250926507039832_8767476426550650860_n.jpg" alt="Comunidad Zeuz reunida" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= NUESTROS SERVICIOS E INSTALACIONES (3 Columnas) ================= -->
+      <section class="py-20 bg-brand-canvas border-t border-brand-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span class="text-xs font-mono font-bold text-brand-secondary uppercase tracking-widest">Lo que te ofrecemos</span>
+            <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-primary">
+              Instalaciones y Servicios de Primera
+            </h2>
+            <p class="text-brand-textMuted text-base">
+              Aprende desde tu primera flexión hasta movimientos avanzados como Muscle-Up, Front Lever y Handstand.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Service 1: Clases -->
+            <div class="p-8 rounded-3xl bg-white rustic-border shadow-sm hover:shadow-rustic transition-all group flex flex-col justify-between">
+              <div>
+                <div class="w-14 h-14 rounded-2xl bg-brand-primary/5 text-brand-primary group-hover:bg-brand-accent group-hover:text-brand-voidBlack transition-colors flex items-center justify-center mb-6">
+                  <i data-lucide="dumbbell" class="w-7 h-7"></i>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-brand-primary mb-3">Clases Guiadas Indoor & Outdoor</h3>
+                <p class="text-sm text-brand-textMuted leading-relaxed mb-6">
+                  2 salas cubiertas con aire acondicionado para entrenar cómodos todo el año, más un patio exterior con estructuras de barras y anillas olímpicas.
+                </p>
+              </div>
+              <ul class="space-y-2 text-xs text-slate-600 border-t border-brand-primary/10 pt-4">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Todos los niveles (Inicial a Avanzado)</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Corrección técnica constante</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Grupos con excelente vibra</li>
+              </ul>
+            </div>
+
+            <!-- Service 2: Entrenador Personalizado -->
+            <div class="p-8 rounded-3xl bg-white rustic-border shadow-sm hover:shadow-rustic transition-all group flex flex-col justify-between">
+              <div>
+                <div class="w-14 h-14 rounded-2xl bg-brand-primary/5 text-brand-primary group-hover:bg-brand-secondary group-hover:text-white transition-colors flex items-center justify-center mb-6">
+                  <i data-lucide="user-check" class="w-7 h-7"></i>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-brand-primary mb-3">Coach Dedicado a tu Proceso</h3>
+                <p class="text-sm text-brand-textMuted leading-relaxed mb-6">
+                  Un entrenador siempre en sala para cuidar tus articulaciones, guiar tus progresiones y motivarte con el humor y la disciplina de Zeus.
+                </p>
+              </div>
+              <ul class="space-y-2 text-xs text-slate-600 border-t border-brand-primary/10 pt-4">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Rutinas personalizadas a tu nivel</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Prevención de molestias de hombros/muñecas</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Cero ego, máxima superación</li>
+              </ul>
+            </div>
+
+            <!-- Service 3: Suplementos & Tienda -->
+            <div class="p-8 rounded-3xl bg-white rustic-border shadow-sm hover:shadow-rustic transition-all group flex flex-col justify-between">
+              <div>
+                <div class="w-14 h-14 rounded-2xl bg-brand-primary/5 text-brand-primary group-hover:bg-brand-accent group-hover:text-brand-voidBlack transition-colors flex items-center justify-center mb-6">
+                  <i data-lucide="shopping-bag" class="w-7 h-7"></i>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-brand-primary mb-3">Tienda de Suplementos & Remeras</h3>
+                <p class="text-sm text-brand-textMuted leading-relaxed mb-6">
+                  Creatina Creapure, proteínas de alta pureza, magnesio líquido para grip en barras y la indumentaria oficial oversized de la comunidad.
+                </p>
+              </div>
+              <ul class="space-y-2 text-xs text-slate-600 border-t border-brand-primary/10 pt-4">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Asesoramiento nutricional en sala</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Remeras de alta calidad serigrafiadas</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Compra online y retiro en el gym</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ¡ÚNETE A NOSOTROS! (CTA DESTACADO) ================= -->
+      <section class="py-20 bg-brand-voidBlack text-brand-canvas relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 text-center space-y-6 relative z-10">
+          <span class="inline-block px-3 py-1 rounded-full bg-brand-accent text-brand-voidBlack font-bold text-xs font-mono uppercase tracking-wider">
+            ¡Tu Primer Entrenamiento te Espera!
+          </span>
+          <h2 class="text-3xl sm:text-5xl font-heading font-extrabold text-white">
+            ¿Listo para forjar tu mejor versión?
+          </h2>
+          <p class="text-brand-bgAccent text-base sm:text-lg max-w-2xl mx-auto font-light">
+            Inscríbete 100% online y asegura tu <strong>20% de descuento automático</strong> con el cupón <span class="font-mono text-brand-accent font-bold">ZEUS20</span>.
+          </p>
+          <div class="pt-4">
+            <button onclick="openEnrollmentModal()" class="px-10 py-4 rounded-2xl gold-gradient text-brand-voidBlack font-heading font-extrabold text-base shadow-gold hover:scale-105 transition-all inline-flex items-center gap-3">
+              <i data-lucide="sparkles" class="w-5 h-5"></i>
+              <span>Reclamar 20% OFF e Inscribirme</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TESTIMONIOS REALES ================= -->
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+            <span class="text-xs font-mono font-bold text-brand-accent uppercase">Voces de la Comunidad</span>
+            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-brand-primary">Experiencias de nuestros atletas</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div class="p-6 rounded-3xl bg-brand-canvas rustic-border space-y-4">
+              <div class="flex text-amber-400 gap-1">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <p class="text-sm text-brand-textMuted italic">
+                "Entré sin poder hacer ni una sola dominada. Hoy saco 10 dominadas estrictas con lastre y el ambiente en el patio al atardecer es inmejorable."
+              </p>
+              <div class="pt-2 border-t border-brand-primary/10 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-brand-primary text-white font-bold flex items-center justify-center text-sm">ML</div>
+                <div>
+                  <h4 class="text-sm font-bold text-brand-primary">Matías López</h4>
+                  <span class="text-xs text-slate-500">Miembro desde 2023</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-brand-canvas rustic-border space-y-4">
+              <div class="flex text-amber-400 gap-1">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <p class="text-sm text-brand-textMuted italic">
+                "El coach combina el humor con una exigencia técnica impecable. Tener aire acondicionado en verano adentro y patio afuera es el combo perfecto."
+              </p>
+              <div class="pt-2 border-t border-brand-primary/10 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-brand-secondary text-white font-bold flex items-center justify-center text-sm">CR</div>
+                <div>
+                  <h4 class="text-sm font-bold text-brand-primary">Camila Rodríguez</h4>
+                  <span class="text-xs text-slate-500">Miembro desde 2024</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-brand-canvas rustic-border space-y-4">
+              <div class="flex text-amber-400 gap-1">
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              </div>
+              <p class="text-sm text-brand-textMuted italic">
+                "Compré la creatina y las muñequeras en la tienda del gym y los chicos te explican cómo utilizarlas bien. La comunidad es como una familia."
+              </p>
+              <div class="pt-2 border-t border-brand-primary/10 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-brand-accent text-brand-voidBlack font-bold flex items-center justify-center text-sm">FG</div>
+                <div>
+                  <h4 class="text-sm font-bold text-brand-primary">Franco Gómez</h4>
+                  <span class="text-xs text-slate-500">Miembro desde 2022</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTACTO & UBICACIÓN ================= -->
+      <section class="py-20 bg-brand-canvas border-t border-brand-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+            <!-- Contact Form -->
+            <div class="lg:col-span-6 bg-white p-8 rounded-3xl rustic-border shadow-sm space-y-6">
+              <div>
+                <span class="text-xs font-mono font-bold text-brand-accent uppercase">Hablemos</span>
+                <h3 class="text-2xl font-heading font-bold text-brand-primary mt-1">¿Tienes consultas? Escríbenos</h3>
+                <p class="text-xs text-brand-textMuted mt-1">Te responderemos a la velocidad de un rayo.</p>
+              </div>
+
+              <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-bold text-brand-primary uppercase mb-1">Nombre Completo</label>
+                  <input type="text" required placeholder="Tu nombre" class="w-full px-4 py-3 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-bold text-brand-primary uppercase mb-1">WhatsApp / Teléfono</label>
+                    <input type="tel" required placeholder="+54 9 11 ..." class="w-full px-4 py-3 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-brand-primary uppercase mb-1">Nivel Actual</label>
+                    <select class="w-full px-4 py-3 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+                      <option>Principiante (0 a 2 dominadas)</option>
+                      <option>Intermedio (3 a 10 dominadas)</option>
+                      <option>Avanzado (Muscle-up / Front Lever)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-brand-primary uppercase mb-1">Mensaje</label>
+                  <textarea rows="3" placeholder="¿En qué horario te gustaría entrenar o qué consulta tienes?" class="w-full px-4 py-3 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-primary hover:bg-brand-darkSurface text-white font-heading font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2">
+                  <i data-lucide="send" class="w-4 h-4 text-brand-accent"></i>
+                  <span>Enviar Consulta</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Location & Schedule -->
+            <div class="lg:col-span-6 space-y-6 flex flex-col justify-between">
+              <div class="space-y-4">
+                <span class="text-xs font-mono font-bold text-brand-secondary uppercase">Dónde Encontrarnos</span>
+                <h3 class="text-3xl font-heading font-bold text-brand-primary">Conoce nuestro Olimpo</h3>
+                <p class="text-sm text-brand-textMuted leading-relaxed">
+                  Ubicación de fácil acceso con vestuarios completos para que entrenes, te duches y sigas con tu día.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  <div class="p-4 rounded-2xl bg-white rustic-border">
+                    <div class="flex items-center gap-2 text-brand-accent font-bold text-sm mb-1">
+                      <i data-lucide="map-pin" class="w-4 h-4"></i>
+                      <span>Dirección</span>
+                    </div>
+                    <p class="text-xs text-slate-600">Av. Olímpica 1234, Centro Calisténico</p>
+                  </div>
+
+                  <div class="p-4 rounded-2xl bg-white rustic-border">
+                    <div class="flex items-center gap-2 text-brand-secondary font-bold text-sm mb-1">
+                      <i data-lucide="clock" class="w-4 h-4"></i>
+                      <span>Horarios</span>
+                    </div>
+                    <p class="text-xs text-slate-600">Lun a Vie: 07:00 a 22:00 hs<br/>Sábados: 09:00 a 14:00 hs</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Visual Map Card -->
+              <div class="h-56 rounded-3xl bg-brand-primary/5 rustic-border flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+                <div class="w-12 h-12 rounded-full bg-brand-accent/20 text-brand-accent flex items-center justify-center mb-2">
+                  <i data-lucide="navigation" class="w-6 h-6"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-primary">2 Salas Indoor + Patio Outdoor</h4>
+                <p class="text-xs text-slate-500 max-w-xs mt-1">A 2 cuadras de la plaza donde nació la comunidad.</p>
+                <a href="https://maps.google.com" target="_blank" class="mt-3 text-xs font-bold text-brand-accent hover:underline flex items-center gap-1">
+                  <span>Abrir en Google Maps</span>
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 2: CLASES & PRECIOS                                          -->
+    <!-- ================================================================= -->
+    <div id="view-clases" class="page-view">
+
+      <!-- Hero Clases -->
+      <section class="bg-brand-voidBlack text-brand-canvas py-16 text-center relative">
+        <div class="max-w-4xl mx-auto px-4 space-y-4">
+          <span class="px-3 py-1 rounded-full bg-brand-accent text-brand-voidBlack font-mono text-xs font-bold uppercase">Entrenamiento Guiado</span>
+          <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white">Nuestras Clases & Membresías</h1>
+          <p class="text-brand-bgAccent text-base max-w-xl mx-auto font-light">
+            Metodología progresiva adaptada a tu cuerpo. 2 salas indoor con A/C y patio exterior.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3 Progressive Levels -->
+      <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div class="p-6 rounded-3xl bg-brand-canvas rustic-border">
+              <div class="w-12 h-12 rounded-2xl bg-brand-accent/20 text-brand-accent flex items-center justify-center font-heading font-bold text-lg mb-4">01</div>
+              <h3 class="text-lg font-bold text-brand-primary mb-2">Iniciación & Fundamentos</h3>
+              <p class="text-xs text-slate-600 leading-relaxed mb-4">Aprende a controlar escápulas, hacer flexiones estrictas, dominadas asistidas y fondos sin riesgo de lesión.</p>
+              <span class="text-[11px] font-mono font-bold text-brand-accent">Para principiantes absolutos</span>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-brand-canvas rustic-border">
+              <div class="w-12 h-12 rounded-2xl bg-brand-secondary/20 text-brand-secondary flex items-center justify-center font-heading font-bold text-lg mb-4">02</div>
+              <h3 class="text-lg font-bold text-brand-primary mb-2">Fuerza & Resistencia</h3>
+              <p class="text-xs text-slate-600 leading-relaxed mb-4">Circuitos de alta intensidad con peso corporal y lastre progresivo. Aumenta masa muscular y potencia funcional.</p>
+              <span class="text-[11px] font-mono font-bold text-brand-secondary">Nivel Intermedio</span>
+            </div>
+
+            <div class="p-6 rounded-3xl bg-brand-canvas rustic-border">
+              <div class="w-12 h-12 rounded-2xl bg-brand-primary text-white flex items-center justify-center font-heading font-bold text-lg mb-4">03</div>
+              <h3 class="text-lg font-bold text-brand-primary mb-2">Habilidades Divinas (Skills)</h3>
+              <p class="text-xs text-slate-600 leading-relaxed mb-4">Entrenamiento especializado para dominar el Muscle-Up, Handstand (Vertical), Front Lever, Planche y anillas.</p>
+              <span class="text-[11px] font-mono font-bold text-brand-primary">Nivel Avanzado</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING TABLE (3 Columnas con Descuento ZEUS20) -->
+      <section class="py-20 bg-brand-canvas border-t border-brand-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span class="text-xs font-mono font-bold text-brand-accent uppercase">Tarifas Claras</span>
+            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-brand-primary">Planes de Membresía</h2>
+            <p class="text-xs text-brand-textMuted">Elige la frecuencia semanal que prefieras. Todos los planes incluyen salas indoor con aire acondicionado y patio.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+
+            <!-- Plan 1: 2 Días -->
+            <div class="p-8 rounded-3xl bg-white rustic-border flex flex-col justify-between shadow-sm">
+              <div>
+                <span class="text-xs font-mono text-slate-500 uppercase font-bold">Plan Básico</span>
+                <h3 class="text-2xl font-heading font-bold text-brand-primary mt-1">2 Días / Semana</h3>
+                <div class="mt-4 mb-6">
+                  <span class="text-4xl font-heading font-extrabold text-brand-primary">$18.000</span>
+                  <span class="text-xs text-slate-500">/ mes</span>
+                  <div class="text-xs font-bold text-emerald-600 mt-1">Con ZEUS20: $14.400 primer mes</div>
+                </div>
+                <ul class="space-y-3 text-xs text-slate-600 border-t border-brand-primary/10 pt-4">
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 8 clases guiadas al mes</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Acceso a salas indoor + patio</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Vestuarios y duchas</li>
+                </ul>
+              </div>
+              <button onclick="openEnrollmentModal('Plan 2 Días')" class="mt-8 w-full py-3 rounded-2xl bg-brand-primary/10 hover:bg-brand-primary hover:text-white text-brand-primary font-heading font-bold text-xs transition-all">
+                Elegir Plan 2 Días
+              </button>
+            </div>
+
+            <!-- Plan 2: 3 Días (Popular / Destacado) -->
+            <div class="p-8 rounded-3xl bg-white border-2 border-brand-accent flex flex-col justify-between shadow-rustic relative transform md:-translate-y-2">
+              <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full gold-gradient text-brand-voidBlack font-bold text-[10px] uppercase tracking-wider shadow">
+                MÁS POPULAR
+              </div>
+              <div>
+                <span class="text-xs font-mono text-brand-accent uppercase font-bold">Plan Óptimo</span>
+                <h3 class="text-2xl font-heading font-bold text-brand-primary mt-1">3 Días / Semana</h3>
+                <div class="mt-4 mb-6">
+                  <span class="text-4xl font-heading font-extrabold text-brand-primary">$22.000</span>
+                  <span class="text-xs text-slate-500">/ mes</span>
+                  <div class="text-xs font-bold text-emerald-600 mt-1">Con ZEUS20: $17.600 primer mes</div>
+                </div>
+                <ul class="space-y-3 text-xs text-slate-600 border-t border-brand-primary/10 pt-4">
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 12 clases guiadas al mes</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Rutina de progresiones personalizada</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 10% OFF en suplementos de la tienda</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Acceso total a todas las instalaciones</li>
+                </ul>
+              </div>
+              <button onclick="openEnrollmentModal('Plan 3 Días (Popular)')" class="mt-8 w-full py-3.5 rounded-2xl gold-gradient text-brand-voidBlack font-heading font-extrabold text-xs shadow-gold hover:scale-105 transition-all">
+                Inscribirme al Plan 3 Días
+              </button>
+            </div>
+
+            <!-- Plan 3: Pase Libre -->
+            <div class="p-8 rounded-3xl bg-white rustic-border flex flex-col justify-between shadow-sm">
+              <div>
+                <span class="text-xs font-mono text-slate-500 uppercase font-bold">Pase Total</span>
+                <h3 class="text-2xl font-heading font-bold text-brand-primary mt-1">Pase Libre Ilimitado</h3>
+                <div class="mt-4 mb-6">
+                  <span class="text-4xl font-heading font-extrabold text-brand-primary">$26.000</span>
+                  <span class="text-xs text-slate-500">/ mes</span>
+                  <div class="text-xs font-bold text-emerald-600 mt-1">Con ZEUS20: $20.800 primer mes</div>
+                </div>
+                <ul class="space-y-3 text-xs text-slate-600 border-t border-brand-primary/10 pt-4">
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Clases ilimitadas de lunes a sábado</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Horario libre en patio outdoor</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 15% OFF en suplementos y remeras</li>
+                  <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Evaluación de fuerza mensual</li>
+                </ul>
+              </div>
+              <button onclick="openEnrollmentModal('Plan Pase Libre')" class="mt-8 w-full py-3 rounded-2xl bg-brand-primary/10 hover:bg-brand-primary hover:text-white text-brand-primary font-heading font-bold text-xs transition-all">
+                Elegir Pase Libre
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Free Trial CTA -->
+      <section class="py-16 bg-white text-center">
+        <div class="max-w-3xl mx-auto px-4 space-y-4">
+          <h3 class="text-2xl font-heading font-bold text-brand-primary">¿Quieres probar antes de decidir?</h3>
+          <p class="text-xs text-brand-textMuted max-w-lg mx-auto">Ven a una clase de prueba sin cargo para conocer las instalaciones y al entrenador.</p>
+          <button onclick="openEnrollmentModal('Clase de Prueba Gratis')" class="px-8 py-3.5 rounded-2xl bg-brand-secondary text-white font-heading font-bold text-sm shadow-md hover:bg-opacity-90 transition-all">
+            Reservar Clase de Prueba Gratis
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 3: ENTRENADOR                                                -->
+    <!-- ================================================================= -->
+    <div id="view-entrenador" class="page-view">
+
+      <section class="bg-brand-voidBlack text-brand-canvas py-16 text-center relative">
+        <div class="max-w-4xl mx-auto px-4 space-y-4">
+          <span class="px-3 py-1 rounded-full bg-brand-accent text-brand-voidBlack font-mono text-xs font-bold uppercase">Liderazgo & Técnica</span>
+          <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white">Conoce al Entrenador</h1>
+          <p class="text-brand-bgAccent text-base max-w-xl mx-auto font-light">
+            De entrenar solo en una plaza a forjar la comunidad más unida de calistenia.
+          </p>
+        </div>
+      </section>
+
+      <!-- Coach Bio -->
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <!-- Real Photo of Coach Watching Pull-Ups -->
+            <div class="lg:col-span-5">
+              <div class="rounded-3xl overflow-hidden border border-brand-primary/15 shadow-rustic relative group">
+                <img src="assets/828495633_18565900648078683_4579590429606397536_n.jpg" alt="Coach de Calistenia en entrenamiento" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="p-6 bg-brand-canvas border-t border-brand-primary/10">
+                  <h3 class="text-2xl font-heading font-bold text-brand-primary">Coach "Zeus"</h3>
+                  <span class="text-xs font-mono font-bold text-brand-accent uppercase">Fundador & Head Coach</span>
+                  <div class="grid grid-cols-3 gap-2 border-t border-brand-primary/10 pt-4 mt-3 text-center">
+                    <div>
+                      <span class="block text-xl font-heading font-bold text-brand-primary">+8</span>
+                      <span class="text-[10px] text-slate-500 uppercase">Años Exp.</span>
+                    </div>
+                    <div>
+                      <span class="block text-xl font-heading font-bold text-brand-primary">+500</span>
+                      <span class="text-[10px] text-slate-500 uppercase">Alumnos</span>
+                    </div>
+                    <div>
+                      <span class="block text-xl font-heading font-bold text-brand-primary">100%</span>
+                      <span class="text-[10px] text-slate-500 uppercase">Pasión</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coach Bio Text -->
+            <div class="lg:col-span-7 space-y-6">
+              <span class="text-xs font-mono font-bold text-brand-secondary uppercase">Filosofía & Método</span>
+              <h2 class="text-3xl sm:text-4xl font-heading font-bold text-brand-primary leading-tight">
+                "Cualquiera puede levantar peso externo. Controlar tu propio cuerpo en el aire es una obra de arte."
+              </h2>
+              <p class="text-brand-textMuted text-base leading-relaxed">
+                Mi viaje empezó hace más de 8 años en la plaza del barrio, sin presupuesto para gimnasios caros y buscando una disciplina que me diera fuerza real, agilidad y salud en las articulaciones. Descubrí la calistenia y transformó mi vida por completo.
+              </p>
+              <p class="text-brand-textMuted text-base leading-relaxed">
+                En mis clases no encontrarás gritos militares ni egos. Encontrarás técnica milimétrica, progresiones paso a paso adaptadas a si pesas 50 o 100 kilos, y el humor mitológico para disfrutar cada repetición.
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="p-4 rounded-2xl bg-brand-canvas rustic-border">
+                  <h4 class="font-bold text-xs text-brand-primary flex items-center gap-2">
+                    <i data-lucide="shield" class="w-4 h-4 text-brand-secondary"></i> Prevención de Lesiones
+                  </h4>
+                  <p class="text-xs text-slate-600 mt-1">Fortalecimiento de manguito rotador, muñecas y zona media.</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-brand-canvas rustic-border">
+                  <h4 class="font-bold text-xs text-brand-primary flex items-center gap-2">
+                    <i data-lucide="smile" class="w-4 h-4 text-brand-accent"></i> Buena Onda Garantizada
+                  </h4>
+                  <p class="text-xs text-slate-600 mt-1">Aquí se viene a entrenar con rigor y a reírse en el camino.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Accordion -->
+      <section class="py-20 bg-brand-canvas border-t border-brand-primary/10">
+        <div class="max-w-4xl mx-auto px-4">
+          <div class="text-center mb-12 space-y-2">
+            <span class="text-xs font-mono font-bold text-brand-accent uppercase">Dudas Frecuentes</span>
+            <h2 class="text-3xl font-heading font-bold text-brand-primary">Preguntas Frecuentes</h2>
+          </div>
+
+          <div class="space-y-4">
+            <div class="bg-white rounded-2xl rustic-border p-6 shadow-sm">
+              <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center text-left font-heading font-bold text-brand-primary text-base">
+                <span>¿Necesito fuerza previa o saber hacer dominadas para empezar?</span>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-brand-accent transition-transform duration-200"></i>
+              </button>
+              <div class="faq-content hidden mt-3 text-xs text-slate-600 leading-relaxed border-t border-brand-primary/10 pt-3">
+                ¡Absolutamente no! La mayoría de nuestros miembros comenzaron sin poder hacer una sola flexión de brazos ni colgarse de la barra. Para eso existen las progresiones con bandas elásticas y apoyos en suelo.
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl rustic-border p-6 shadow-sm">
+              <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center text-left font-heading font-bold text-brand-primary text-base">
+                <span>¿Qué pasa los días de lluvia o mucho frío/calor?</span>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-brand-accent transition-transform duration-200"></i>
+              </button>
+              <div class="faq-content hidden mt-3 text-xs text-slate-600 leading-relaxed border-t border-brand-primary/10 pt-3">
+                Contamos con 2 salas cubiertas climatizadas con aire acondicionado y calefacción. El patio exterior es una opción adicional para los días soleados.
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl rustic-border p-6 shadow-sm">
+              <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center text-left font-heading font-bold text-brand-primary text-base">
+                <span>¿Puedo comprar suplementos o remeras si no soy alumno?</span>
+                <i data-lucide="chevron-down" class="w-5 h-5 text-brand-accent transition-transform duration-200"></i>
+              </button>
+              <div class="faq-content hidden mt-3 text-xs text-slate-600 leading-relaxed border-t border-brand-primary/10 pt-3">
+                ¡Sí! Nuestra tienda está abierta para toda la comunidad. Puedes comprar online y retirar en el gimnasio o pasar directamente.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 4: TIENDA                                                    -->
+    <!-- ================================================================= -->
+    <div id="view-tienda" class="page-view">
+
+      <section class="bg-brand-voidBlack text-brand-canvas py-16 text-center relative">
+        <div class="max-w-4xl mx-auto px-4 space-y-4">
+          <span class="px-3 py-1 rounded-full bg-brand-accent text-brand-voidBlack font-mono text-xs font-bold uppercase">Suplementos & Indumentaria</span>
+          <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white">La Tienda del Olimpo</h1>
+          <p class="text-brand-bgAccent text-base max-w-xl mx-auto font-light">
+            Nutrición, protección y remeras oficiales para dominar la barra.
+          </p>
+        </div>
+      </section>
+
+      <!-- Products Grid -->
+      <section class="py-20 bg-brand-canvas">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div class="flex items-center justify-between mb-8 pb-4 border-b border-brand-primary/10">
+            <h2 class="text-2xl font-heading font-bold text-brand-primary">Catálogo Disponible</h2>
+            <div class="text-xs font-mono text-slate-500">Stock inmediato para retiro en sala</div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Product 1: Creatina -->
+            <div class="p-6 rounded-3xl bg-white rustic-border shadow-sm flex flex-col justify-between group hover:shadow-rustic transition-all">
+              <div>
+                <div class="h-48 rounded-2xl bg-brand-primary/5 flex items-center justify-center p-4 relative overflow-hidden mb-4">
+                  <div class="w-20 h-20 rounded-2xl bg-brand-accent/20 text-brand-accent flex items-center justify-center">
+                    <i data-lucide="zap" class="w-10 h-10"></i>
+                  </div>
+                  <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-brand-accent text-brand-voidBlack font-bold text-[10px] uppercase font-mono">Top Ventas</span>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-brand-secondary uppercase">Suplemento</span>
+                <h3 class="font-heading font-bold text-lg text-brand-primary mt-1">Creatina Creapure 300g</h3>
+                <p class="text-xs text-slate-600 mt-1">100% Pura, máxima absorción para potencia explosiva en dominadas y fondos.</p>
+              </div>
+              <div class="pt-4 border-t border-brand-primary/10 mt-4 flex items-center justify-between">
+                <div>
+                  <span class="text-xs text-slate-400 block">Precio</span>
+                  <span class="font-heading font-extrabold text-xl text-brand-primary">$28.500</span>
+                </div>
+                <button onclick="addToCart('Creatina Monohidratada 300g', 28500)" class="px-4 py-2.5 rounded-xl gold-gradient text-brand-voidBlack font-bold text-xs shadow hover:scale-105 transition-all flex items-center gap-1.5">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  <span>Añadir</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Product 2: Whey Protein -->
+            <div class="p-6 rounded-3xl bg-white rustic-border shadow-sm flex flex-col justify-between group hover:shadow-rustic transition-all">
+              <div>
+                <div class="h-48 rounded-2xl bg-brand-primary/5 flex items-center justify-center p-4 relative overflow-hidden mb-4">
+                  <div class="w-20 h-20 rounded-2xl bg-brand-secondary/20 text-brand-secondary flex items-center justify-center">
+                    <i data-lucide="shield" class="w-10 h-10"></i>
+                  </div>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-brand-secondary uppercase">Suplemento</span>
+                <h3 class="font-heading font-bold text-lg text-brand-primary mt-1">Proteína Whey Isolada 1kg</h3>
+                <p class="text-xs text-slate-600 mt-1">26g de proteína por scoop, 0g azúcar añadida. Sabores Vainilla o Chocolate.</p>
+              </div>
+              <div class="pt-4 border-t border-brand-primary/10 mt-4 flex items-center justify-between">
+                <div>
+                  <span class="text-xs text-slate-400 block">Precio</span>
+                  <span class="font-heading font-extrabold text-xl text-brand-primary">$34.000</span>
+                </div>
+                <button onclick="addToCart('Proteína Whey 1kg', 34000)" class="px-4 py-2.5 rounded-xl gold-gradient text-brand-voidBlack font-bold text-xs shadow hover:scale-105 transition-all flex items-center gap-1.5">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  <span>Añadir</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Product 3: Remera Oficial con Foto Real -->
+            <div class="p-6 rounded-3xl bg-white rustic-border shadow-sm flex flex-col justify-between group hover:shadow-rustic transition-all">
+              <div>
+                <div class="h-48 rounded-2xl bg-brand-primary/5 overflow-hidden relative mb-4 border border-brand-primary/10">
+                  <img src="assets/828954272_18565900813078683_4150082873104382617_n.jpg" alt="Remera oficial Zeuz Calistenia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                  <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-brand-primary text-white font-bold text-[10px] uppercase font-mono">Oficial</span>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-brand-accent uppercase">Indumentaria</span>
+                <h3 class="font-heading font-bold text-lg text-brand-primary mt-1">Remera Oversized Zeuz Calistenia</h3>
+                <p class="text-xs text-slate-600 mt-1">Algodón 24/1 premium, estampa con el logo de Zeus de alta resistencia.</p>
+              </div>
+              <div class="pt-4 border-t border-brand-primary/10 mt-4 flex items-center justify-between">
+                <div>
+                  <span class="text-xs text-slate-400 block">Precio</span>
+                  <span class="font-heading font-extrabold text-xl text-brand-primary">$22.000</span>
+                </div>
+                <button onclick="addToCart('Remera Oversized Zeuz', 22000)" class="px-4 py-2.5 rounded-xl gold-gradient text-brand-voidBlack font-bold text-xs shadow hover:scale-105 transition-all flex items-center gap-1.5">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  <span>Añadir</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Product 4: Magnesio Líquido -->
+            <div class="p-6 rounded-3xl bg-white rustic-border shadow-sm flex flex-col justify-between group hover:shadow-rustic transition-all">
+              <div>
+                <div class="h-48 rounded-2xl bg-brand-primary/5 flex items-center justify-center p-4 relative overflow-hidden mb-4">
+                  <div class="w-20 h-20 rounded-2xl bg-brand-accent/20 text-brand-accent flex items-center justify-center">
+                    <i data-lucide="hand" class="w-10 h-10"></i>
+                  </div>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-brand-secondary uppercase">Accesorio</span>
+                <h3 class="font-heading font-bold text-lg text-brand-primary mt-1">Magnesio Líquido Agarre 250ml</h3>
+                <p class="text-xs text-slate-600 mt-1">Secado instantáneo en 5 segundos. Cero polvo en sala, máximo grip en barra.</p>
+              </div>
+              <div class="pt-4 border-t border-brand-primary/10 mt-4 flex items-center justify-between">
+                <div>
+                  <span class="text-xs text-slate-400 block">Precio</span>
+                  <span class="font-heading font-extrabold text-xl text-brand-primary">$9.500</span>
+                </div>
+                <button onclick="addToCart('Magnesio Líquido 250ml', 9500)" class="px-4 py-2.5 rounded-xl gold-gradient text-brand-voidBlack font-bold text-xs shadow hover:scale-105 transition-all flex items-center gap-1.5">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  <span>Añadir</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Product 5: Muñequeras -->
+            <div class="p-6 rounded-3xl bg-white rustic-border shadow-sm flex flex-col justify-between group hover:shadow-rustic transition-all">
+              <div>
+                <div class="h-48 rounded-2xl bg-brand-primary/5 flex items-center justify-center p-4 relative overflow-hidden mb-4">
+                  <div class="w-20 h-20 rounded-2xl bg-brand-secondary/20 text-brand-secondary flex items-center justify-center">
+                    <i data-lucide="lock" class="w-10 h-10"></i>
+                  </div>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-brand-secondary uppercase">Protección</span>
+                <h3 class="font-heading font-bold text-lg text-brand-primary mt-1">Muñequeras Elásticas Reforzadas</h3>
+                <p class="text-xs text-slate-600 mt-1">Soporte rígido para fondos pesados, handstand y planchas sin dolor.</p>
+              </div>
+              <div class="pt-4 border-t border-brand-primary/10 mt-4 flex items-center justify-between">
+                <div>
+                  <span class="text-xs text-slate-400 block">Precio</span>
+                  <span class="font-heading font-extrabold text-xl text-brand-primary">$12.000</span>
+                </div>
+                <button onclick="addToCart('Muñequeras Reforzadas', 12000)" class="px-4 py-2.5 rounded-xl gold-gradient text-brand-voidBlack font-bold text-xs shadow hover:scale-105 transition-all flex items-center gap-1.5">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  <span>Añadir</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Product 6: Calleras -->
+            <div class="p-6 rounded-3xl bg-white rustic-border shadow-sm flex flex-col justify-between group hover:shadow-rustic transition-all">
+              <div>
+                <div class="h-48 rounded-2xl bg-brand-primary/5 flex items-center justify-center p-4 relative overflow-hidden mb-4">
+                  <div class="w-20 h-20 rounded-2xl bg-brand-primary/20 text-brand-primary flex items-center justify-center">
+                    <i data-lucide="activity" class="w-10 h-10"></i>
+                  </div>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-brand-accent uppercase">Protección</span>
+                <h3 class="font-heading font-bold text-lg text-brand-primary mt-1">Calleras de Cuero Sin Agujeros</h3>
+                <p class="text-xs text-slate-600 mt-1">Protege las palmas durante series largas de dominadas y muscle-ups.</p>
+              </div>
+              <div class="pt-4 border-t border-brand-primary/10 mt-4 flex items-center justify-between">
+                <div>
+                  <span class="text-xs text-slate-400 block">Precio</span>
+                  <span class="font-heading font-extrabold text-xl text-brand-primary">$16.500</span>
+                </div>
+                <button onclick="addToCart('Calleras de Cuero', 16500)" class="px-4 py-2.5 rounded-xl gold-gradient text-brand-voidBlack font-bold text-xs shadow hover:scale-105 transition-all flex items-center gap-1.5">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                  <span>Añadir</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 5: NOSOTROS (HISTORIA & VALORES)                             -->
+    <!-- ================================================================= -->
+    <div id="view-nosotros" class="page-view">
+
+      <section class="bg-brand-voidBlack text-brand-canvas py-16 text-center relative">
+        <div class="max-w-4xl mx-auto px-4 space-y-4">
+          <span class="px-3 py-1 rounded-full bg-brand-accent text-brand-voidBlack font-mono text-xs font-bold uppercase">Comunidad & Valores</span>
+          <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white">Nuestra Esencia</h1>
+          <p class="text-brand-bgAccent text-base max-w-xl mx-auto font-light">
+            Más que un gimnasio: una hermandad unida por el peso corporal y la superación personal.
+          </p>
+        </div>
+      </section>
+
+      <!-- Detailed Story Timeline with Community Photo -->
+      <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+          <!-- Community Photo Showcase -->
+          <div class="rounded-3xl overflow-hidden border border-brand-primary/15 shadow-rustic relative">
+            <img src="assets/491755608_1250926507039832_8767476426550650860_n.jpg" alt="La comunidad de Zeuz Calistenia" class="w-full h-96 object-cover">
+            <div class="p-6 bg-brand-canvas border-t border-brand-primary/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div>
+                <h4 class="font-heading font-bold text-lg text-brand-primary">La Familia de Zeuz Calistenia</h4>
+                <p class="text-xs text-slate-500">Entrenamiento con respeto, amistad y compañerismo.</p>
+              </div>
+              <span class="text-xs font-mono font-bold text-brand-accent px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/20">DESDE 2019</span>
+            </div>
+          </div>
+
+          <!-- 4 Core Values -->
+          <div class="pt-4">
+            <h3 class="text-2xl font-heading font-bold text-brand-primary text-center mb-8">Nuestros 4 Mandamientos</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+              <div class="p-6 rounded-3xl bg-brand-canvas rustic-border text-center space-y-2">
+                <div class="w-10 h-10 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mx-auto">
+                  <i data-lucide="users" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-primary">1. Cero Ego</h4>
+                <p class="text-xs text-slate-500">Aquí nadie mira mal al que recién empieza. Todos fuimos principiantes.</p>
+              </div>
+
+              <div class="p-6 rounded-3xl bg-brand-canvas rustic-border text-center space-y-2">
+                <div class="w-10 h-10 rounded-2xl bg-brand-accent/20 text-brand-accent flex items-center justify-center mx-auto">
+                  <i data-lucide="target" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-primary">2. Técnica Pura</h4>
+                <p class="text-xs text-slate-500">Una repetición perfecta vale más que 10 repeticiones tramposas.</p>
+              </div>
+
+              <div class="p-6 rounded-3xl bg-brand-canvas rustic-border text-center space-y-2">
+                <div class="w-10 h-10 rounded-2xl bg-brand-secondary/20 text-brand-secondary flex items-center justify-center mx-auto">
+                  <i data-lucide="heart" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-primary">3. Hermandad</h4>
+                <p class="text-xs text-slate-500">Celebramos tu primer fondo o tu primer muscle-up como si fuera nuestro.</p>
+              </div>
+
+              <div class="p-6 rounded-3xl bg-brand-canvas rustic-border text-center space-y-2">
+                <div class="w-10 h-10 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mx-auto">
+                  <i data-lucide="zap" class="w-5 h-5"></i>
+                </div>
+                <h4 class="font-bold text-sm text-brand-primary">4. Constancia</h4>
+                <p class="text-xs text-slate-500">El rayo cae donde se trabaja todos los días sin excusas.</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- ================= FLOATING WHATSAPP BUTTON (BOTTOM RIGHT) ================= -->
+  <aside class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+    <!-- Hover Tooltip -->
+    <div class="hidden sm:flex items-center px-3 py-1.5 rounded-xl bg-brand-voidBlack/90 text-white text-xs font-semibold shadow-xl border border-white/10 backdrop-blur-md">
+      <span>¿Dudas? ¡Escríbenos por WhatsApp!</span>
+    </div>
+
+    <!-- WhatsApp Floating Action Trigger -->
+    <a href="https://wa.me/5491123456789?text=¡Hola%20Zeuz%20Calistenia!%20Quiero%20más%20información%20sobre%20las%20clases%20y%20el%20descuento%20ZEUS20."
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Contactar por WhatsApp"
+       class="whatsapp-float-btn w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20ba59] shadow-2xl flex items-center justify-center p-2.5 transition-transform hover:scale-110 active:scale-95 duration-200">
+      <img src="assets/whatsapp-btn.png" alt="WhatsApp Icon" class="w-full h-full object-contain filter drop-shadow">
+    </a>
+  </aside>
+
+  <!-- ================= MASTER FOOTER ================= -->
+  <footer class="bg-brand-voidBlack text-brand-canvas pt-16 pb-12 border-t border-brand-accent/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+
+        <!-- Col 1: Brand -->
+        <div class="space-y-4 md:col-span-1">
+          <div class="flex items-center gap-3">
+            <div class="h-10 w-10 rounded-xl bg-white/10 p-1 flex items-center justify-center">
+              <img src="assets/Logo zeuz calistenia.png" alt="Logo Zeuz" class="h-full w-full object-contain">
+            </div>
+            <span class="font-heading font-extrabold text-lg text-white">ZEUZ <span class="text-brand-accent">CALISTENIA</span></span>
+          </div>
+          <p class="text-xs text-brand-bgAccent leading-relaxed">
+            La primer comunidad de entrenamiento con peso corporal de la ciudad. 2 salas indoor climatizadas y patio exterior.
+          </p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="https://instagram.com" target="_blank" class="p-2 rounded-xl bg-white/5 hover:bg-brand-accent hover:text-brand-voidBlack text-brand-bgAccent transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            <a href="https://facebook.com" target="_blank" class="p-2 rounded-xl bg-white/5 hover:bg-brand-accent hover:text-brand-voidBlack text-brand-bgAccent transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+            <a href="https://youtube.com" target="_blank" class="p-2 rounded-xl bg-white/5 hover:bg-brand-accent hover:text-brand-voidBlack text-brand-bgAccent transition-colors"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Navigation Links -->
+        <div class="space-y-3">
+          <h4 class="font-heading font-bold text-sm text-brand-accent uppercase tracking-wider font-mono">Explorar</h4>
+          <ul class="space-y-2 text-xs text-brand-bgAccent">
+            <li><button onclick="navigateTo('inicio')" class="hover:text-white transition-colors">Inicio</button></li>
+            <li><button onclick="navigateTo('clases')" class="hover:text-white transition-colors">Clases & Precios</button></li>
+            <li><button onclick="navigateTo('entrenador')" class="hover:text-white transition-colors">Conoce al Entrenador</button></li>
+            <li><button onclick="navigateTo('tienda')" class="hover:text-white transition-colors">Tienda Oficial</button></li>
+            <li><button onclick="navigateTo('nosotros')" class="hover:text-white transition-colors">Historia & Valores</button></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Facilities -->
+        <div class="space-y-3">
+          <h4 class="font-heading font-bold text-sm text-brand-accent uppercase tracking-wider font-mono">Instalaciones</h4>
+          <ul class="space-y-2 text-xs text-brand-bgAccent">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-secondary"></i> 2 Salas Indoor Climatizadas</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-secondary"></i> Patio Calisténico al Aire Libre</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-secondary"></i> Vestuarios y Duchas de Agua Caliente</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-secondary"></i> Tienda de Suplementos & Remeras</li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Horarios & Contacto -->
+        <div class="space-y-3">
+          <h4 class="font-heading font-bold text-sm text-brand-accent uppercase tracking-wider font-mono">Contacto Directo</h4>
+          <p class="text-xs text-brand-bgAccent">Av. Olímpica 1234, Centro Calisténico</p>
+          <p class="text-xs text-brand-bgAccent">WhatsApp: +54 9 11 2345-6789</p>
+          <p class="text-xs text-brand-bgAccent">Lun a Vie: 07:00 a 22:00 hs | Sáb: 09:00 a 14:00</p>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+        <span>&copy; 2026 Zeuz Calistenia. Todos los derechos reservados.</span>
+        <span class="text-brand-bgAccent/60">Construido con ScrollCraft & OpenDesign</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SHOPPING CART DRAWER ================= -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
+    <div onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+    <div class="absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 pointer-events-auto">
+
+      <!-- Drawer Header -->
+      <div class="p-6 border-b border-brand-primary/10 flex items-center justify-between bg-brand-canvas">
+        <div class="flex items-center gap-2">
+          <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-accent"></i>
+          <h3 class="font-heading font-bold text-base text-brand-primary">Tu Carrito de la Tienda</h3>
+        </div>
+        <button onclick="toggleCartDrawer()" class="p-2 rounded-lg text-slate-400 hover:text-brand-primary">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Drawer Items List -->
+      <div id="cartItemsList" class="p-6 overflow-y-auto flex-grow space-y-4"></div>
+
+      <!-- Drawer Footer -->
+      <div class="p-6 border-t border-brand-primary/10 bg-brand-canvas space-y-4">
+        <div class="flex justify-between items-center text-sm">
+          <span class="text-slate-500 font-medium">Subtotal</span>
+          <span id="cartTotal" class="font-heading font-extrabold text-xl text-brand-primary">$0</span>
+        </div>
+        <button onclick="handleCheckout()" class="w-full py-3.5 rounded-2xl gold-gradient text-brand-voidBlack font-heading font-extrabold text-sm shadow-gold hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+          <i data-lucide="credit-card" class="w-4 h-4"></i>
+          <span>Completar Pedido por WhatsApp</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= ENROLLMENT MODAL WITH 20% DISCOUNT ================= -->
+  <div id="enrollmentModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl rustic-border shadow-2xl max-w-lg w-full overflow-hidden relative animate-in fade-in zoom-in duration-200">
+
+      <div class="p-6 bg-brand-voidBlack text-brand-canvas relative">
+        <button onclick="closeEnrollmentModal()" class="absolute top-4 right-4 text-brand-bgAccent hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-accent text-brand-voidBlack font-bold text-[10px] font-mono uppercase mb-2">
+          <i data-lucide="zap" class="w-3 h-3 fill-current"></i> Cupón ZEUS20 Activado
+        </div>
+        <h3 class="text-2xl font-heading font-extrabold text-white">Inscripción Online</h3>
+        <p class="text-xs text-brand-bgAccent mt-1">Completa tus datos para asegurar tu cupo con 20% de Descuento.</p>
+      </div>
+
+      <form onsubmit="handleEnrollmentSubmit(event)" class="p-6 space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-brand-primary uppercase mb-1">Nombre y Apellido</label>
+          <input type="text" required placeholder="Tu nombre" class="w-full px-4 py-2.5 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-brand-primary uppercase mb-1">WhatsApp</label>
+            <input type="tel" required placeholder="+54 9 11 ..." class="w-full px-4 py-2.5 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-brand-primary uppercase mb-1">Plan a Elegir</label>
+            <select id="modalPlanSelect" class="w-full px-4 py-2.5 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+              <option value="Plan 3 Días (Popular)">Plan 3 Días (Recomendado)</option>
+              <option value="Plan 2 Días">Plan 2 Días</option>
+              <option value="Plan Pase Libre">Plan Pase Libre</option>
+              <option value="Clase de Prueba Gratis">Clase de Prueba Gratis</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-brand-primary uppercase mb-1">Horario Preferido</label>
+          <select class="w-full px-4 py-2.5 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent">
+            <option>Turno Mañana (07:00 a 11:00 hs)</option>
+            <option>Turno Tarde (14:00 a 18:00 hs)</option>
+            <option>Turno Noche (18:00 a 22:00 hs)</option>
+            <option>Sábados (09:00 a 14:00 hs)</option>
+          </select>
+        </div>
+
+        <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center justify-between">
+          <span>Cupón <strong>ZEUS20</strong> aplicado:</span>
+          <span class="font-bold text-emerald-900">-20% OFF en primera cuota</span>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-2xl gold-gradient text-brand-voidBlack font-heading font-extrabold text-sm shadow-gold hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+          <i data-lucide="check-circle" class="w-4 h-4"></i>
+          <span>Confirmar Reserva con Descuento</span>
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ================= TOAST NOTIFICATION ================= -->
+  <div id="toastNotification" class="fixed bottom-6 left-6 z-50 hidden p-4 rounded-2xl bg-brand-voidBlack text-white shadow-2xl border border-brand-accent/40 items-center gap-3 animate-in slide-in-from-bottom-5">
+    <div class="w-8 h-8 rounded-full gold-gradient text-brand-voidBlack flex items-center justify-center font-bold">
+      <i data-lucide="check" class="w-4 h-4"></i>
+    </div>
+    <div>
+      <h5 id="toastTitle" class="text-xs font-bold text-white">Notificación</h5>
+      <p id="toastMessage" class="text-[11px] text-brand-bgAccent">Acción realizada correctamente.</p>
+    </div>
+  </div>
+
+  <!-- ================= INTERACTIVE JAVASCRIPT & SCROLLCRAFT PARALLAX ================= -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // 1. ScrollCraft Dynamic Depth & Progress Tracking
+    window.addEventListener('scroll', () => {
+      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollCurrent = window.scrollY;
+      const progress = (scrollCurrent / scrollTotal) * 100;
+
+      const bar = document.getElementById('scrollProgressBar');
+      if (bar) {
+        bar.style.width = `${progress}%`;
+      }
+
+      // Parallax shifts on hero layers
+      const hero = document.getElementById('hero-section');
+      if (hero) {
+        const scrolled = window.scrollY;
+        const layerBack = hero.querySelector('.depth-layer-back');
+        const layerMid = hero.querySelector('.depth-layer-mid');
+        const layerFront = hero.querySelector('.depth-layer-front');
+
+        if (layerBack) layerBack.style.transform = `translateY(${scrolled * 0.25}px) translateZ(-80px) scale(1.08)`;
+        if (layerMid) layerMid.style.transform = `translateY(${scrolled * 0.12}px) translateZ(20px)`;
+        if (layerFront) layerFront.style.transform = `translateY(${scrolled * 0.05}px) translateZ(60px)`;
+      }
+    });
+
+    // 2. Interactive Cursor Parallax over Hero
+    const heroEl = document.getElementById('hero-section');
+    if (heroEl) {
+      heroEl.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const xOffset = (clientX / window.innerWidth - 0.5) * 20;
+        const yOffset = (clientY / window.innerHeight - 0.5) * 20;
+
+        const layerMid = heroEl.querySelector('.depth-layer-mid');
+        if (layerMid) {
+          layerMid.style.transform = `translate(${xOffset}px, ${yOffset}px) translateZ(20px)`;
+        }
+      });
+    }
+
+    // 3. SPA Navigation Router
+    function navigateTo(viewId) {
+      document.querySelectorAll('.page-view').forEach(view => {
+        view.classList.remove('active');
+      });
+
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('text-brand-accent', 'bg-brand-primary/5');
+        link.classList.add('text-brand-primary/80');
+      });
+
+      const activeNavLink = document.getElementById(`nav-${viewId}`);
+      if (activeNavLink) {
+        activeNavLink.classList.add('text-brand-accent', 'bg-brand-primary/5');
+        activeNavLink.classList.remove('text-brand-primary/80');
+      }
+
+      setTimeout(() => lucide.createIcons(), 50);
+    }
+
+    // 4. Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // 5. Shopping Cart Logic
+    let cart = [];
+
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCartUI();
+      showToast('Producto Añadido', `${name} se agregó al carrito.`);
+    }
+
+    function changeQty(name, delta) {
+      const item = cart.find(i => i.name === name);
+      if (item) {
+        item.qty += delta;
+        if (item.qty <= 0) {
+          cart = cart.filter(i => i.name !== name);
+        }
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const badge = document.getElementById('cartBadgeCount');
+      const list = document.getElementById('cartItemsList');
+      const totalEl = document.getElementById('cartTotal');
+
+      const totalItems = cart.reduce((acc, curr) => acc + curr.qty, 0);
+      badge.textContent = totalItems;
+
+      if (cart.length === 0) {
+        list.innerHTML = `
+          <div class="h-64 flex flex-col items-center justify-center text-center text-slate-400">
+            <i data-lucide="shopping-cart" class="w-12 h-12 mb-2 text-slate-300"></i>
+            <p class="text-xs">Tu carrito está vacío.</p>
+            <button onclick="navigateTo('tienda'); toggleCartDrawer()" class="mt-4 px-4 py-2 rounded-xl bg-brand-primary text-white text-xs font-bold">Ver Catálogo</button>
+          </div>
+        `;
+        totalEl.textContent = '$0';
+      } else {
+        let totalSum = 0;
+        list.innerHTML = cart.map(item => {
+          totalSum += item.price * item.qty;
+          return `
+            <div class="p-4 rounded-2xl bg-brand-canvas rustic-border flex items-center justify-between">
+              <div>
+                <h4 class="text-xs font-bold text-brand-primary">${item.name}</h4>
+                <span class="text-xs font-mono text-brand-accent font-bold">$${(item.price * item.qty).toLocaleString()}</span>
+              </div>
+              <div class="flex items-center gap-2 bg-white rounded-lg p-1 border border-brand-primary/10">
+                <button onclick="changeQty('${item.name}', -1)" class="w-6 h-6 rounded flex items-center justify-center text-xs font-bold text-slate-600 hover:bg-slate-100">-</button>
+                <span class="text-xs font-bold px-1">${item.qty}</span>
+                <button onclick="changeQty('${item.name}', 1)" class="w-6 h-6 rounded flex items-center justify-center text-xs font-bold text-slate-600 hover:bg-slate-100">+</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+        totalEl.textContent = `$${totalSum.toLocaleString()}`;
+      }
+      lucide.createIcons();
+    }
+
+    function toggleCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      const panel = drawer.querySelector('div.absolute.top-0.right-0');
+
+      if (drawer.classList.contains('pointer-events-none')) {
+        drawer.classList.remove('pointer-events-none', 'opacity-0');
+        drawer.classList.add('opacity-100');
+        panel.classList.remove('translate-x-full');
+      } else {
+        panel.classList.add('translate-x-full');
+        drawer.classList.remove('opacity-100');
+        drawer.classList.add('opacity-0', 'pointer-events-none');
+      }
+    }
+
+    function handleCheckout() {
+      if (cart.length === 0) {
+        showToast('Carrito Vacío', 'Agrega algún producto antes de finalizar.');
+        return;
+      }
+      const summary = cart.map(i => `${i.qty}x ${i.name} ($${i.price * i.qty})`).join('%0A');
+      const total = cart.reduce((acc, curr) => acc + curr.price * curr.qty, 0);
+      const msg = `¡Hola Zeuz Calistenia! Quiero encargar los siguientes productos de la tienda:%0A%0A${summary}%0A%0ATotal: $${total}`;
+      window.open(`https://wa.me/5491123456789?text=${msg}`, '_blank');
+      toggleCartDrawer();
+    }
+
+    // 6. Enrollment Modal Controls
+    function openEnrollmentModal(planName = '') {
+      const modal = document.getElementById('enrollmentModal');
+      const select = document.getElementById('modalPlanSelect');
+      if (planName && select) {
+        select.value = planName;
+      }
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeEnrollmentModal() {
+      const modal = document.getElementById('enrollmentModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleEnrollmentSubmit(e) {
+      e.preventDefault();
+      closeEnrollmentModal();
+      showToast('¡Inscripción Recibida!', 'Te contactamos por WhatsApp con tu cupón del 20% OFF.');
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      showToast('Mensaje Enviado', 'Nos pondremos en contacto contigo a la brevedad.');
+      e.target.reset();
+    }
+
+    // 7. FAQ Accordion Toggle
+    function toggleFaq(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('i');
+      content.classList.toggle('hidden');
+      if (content.classList.contains('hidden')) {
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    // 8. Toast Notifications
+    function showToast(title, message) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastTitle').textContent = title;
+      document.getElementById('toastMessage').textContent = message;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 4000);
+      lucide.createIcons();
+    }
+
+    // Initial run
+    updateCartUI();
+  </script>
+</body>
+</html>

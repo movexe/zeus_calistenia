@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus AI — Modern Linear-Style Bento UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            surface: {
+              DEFAULT: '#0D0E15',
+              card: '#131520',
+              border: 'rgba(255, 255, 255, 0.08)',
+            },
+            accent: {
+              purple: '#8B5CF6',
+              cyan: '#06B6D4',
+              emerald: '#10B981',
+              amber: '#F59E0B',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#08090E] text-slate-200 font-sans antialiased min-h-screen selection:bg-purple-500/30 selection:text-purple-200">
+
+  <!-- Background Ambient Mesh -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[450px] bg-gradient-to-b from-purple-600/15 via-cyan-500/10 to-transparent blur-3xl opacity-70"></div>
+    <div class="absolute -top-40 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-[128px]"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 backdrop-blur-md bg-[#08090E]/80 border-b border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-cyan-400 p-0.5 shadow-lg shadow-purple-500/20">
+          <div class="w-full h-full bg-[#08090E] rounded-[6px] flex items-center justify-center">
+            <i data-lucide="layers" class="w-4 h-4 text-purple-400"></i>
+          </div>
+        </div>
+        <span class="font-bold text-lg text-white tracking-tight">Nexus<span class="text-purple-400">.design</span></span>
+      </div>
+
+      <div class="hidden md:flex items-center gap-8 text-sm text-slate-400">
+        <a href="#features" class="hover:text-white transition-colors">Features</a>
+        <a href="#systems" class="hover:text-white transition-colors">Design Systems</a>
+        <a href="#templates" class="hover:text-white transition-colors">Templates</a>
+        <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button class="text-xs font-mono text-slate-300 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 transition-all">
+          Docs
+        </button>
+        <button class="text-xs font-semibold text-white px-4 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-lg shadow-purple-600/25 transition-all">
+          Get Started
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="max-w-5xl mx-auto px-6 pt-20 pb-16 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-mono mb-6">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <span>OpenDesign Visual Engine v2.4</span>
+    </div>
+    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
+      Architect visual experiences at the speed of <span class="bg-gradient-to-r from-purple-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent">thought.</span>
+    </h1>
+    <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8">
+      A deterministic design system engine built for AI coding agents. Generate production-ready layouts, vector graphics, and interactive prototypes.
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <button class="px-6 py-3 rounded-xl bg-white text-slate-950 font-semibold text-sm hover:bg-slate-100 shadow-xl shadow-white/5 flex items-center gap-2 transition-all">
+        <span>Explore Design Systems</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+      <button class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 font-medium text-sm transition-all flex items-center gap-2">
+        <i data-lucide="terminal" class="w-4 h-4 text-purple-400"></i>
+        <span class="font-mono">npx open-design@latest</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Bento Grid Showcase -->
+  <main class="max-w-7xl mx-auto px-6 pb-24">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+      <!-- Bento 1: Large Feature Card (2 cols) -->
+      <div class="md:col-span-2 lg:col-span-2 p-6 rounded-2xl bg-surface-card border border-surface-border relative overflow-hidden group hover:border-purple-500/30 transition-all duration-300">
+        <div class="flex justify-between items-start mb-6">
+          <div class="p-3 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+            <i data-lucide="palette" class="w-6 h-6"></i>
+          </div>
+          <span class="text-xs font-mono px-2 py-1 rounded bg-white/5 text-slate-400 border border-white/10">Tokens & Colors</span>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-2">Automated Token Generation</h3>
+        <p class="text-sm text-slate-400 leading-relaxed mb-6">
+          Extract and compile OKLCH color palettes, font pairings, and spacing scales automatically into your <code class="font-mono text-purple-300 bg-purple-950/40 px-1 py-0.5 rounded">DESIGN.md</code>.
+        </p>
+
+        <!-- Visual Token Swatches -->
+        <div class="grid grid-cols-4 gap-2 pt-2 border-t border-white/5">
+          <div class="p-3 rounded-lg bg-[#6366F1]/20 border border-[#6366F1]/40 text-center">
+            <div class="w-4 h-4 rounded-full bg-[#6366F1] mx-auto mb-1"></div>
+            <span class="text-[10px] font-mono text-slate-300">#6366F1</span>
+          </div>
+          <div class="p-3 rounded-lg bg-[#8B5CF6]/20 border border-[#8B5CF6]/40 text-center">
+            <div class="w-4 h-4 rounded-full bg-[#8B5CF6] mx-auto mb-1"></div>
+            <span class="text-[10px] font-mono text-slate-300">#8B5CF6</span>
+          </div>
+          <div class="p-3 rounded-lg bg-[#06B6D4]/20 border border-[#06B6D4]/40 text-center">
+            <div class="w-4 h-4 rounded-full bg-[#06B6D4] mx-auto mb-1"></div>
+            <span class="text-[10px] font-mono text-slate-300">#06B6D4</span>
+          </div>
+          <div class="p-3 rounded-lg bg-[#10B981]/20 border border-[#10B981]/40 text-center">
+            <div class="w-4 h-4 rounded-full bg-[#10B981] mx-auto mb-1"></div>
+            <span class="text-[10px] font-mono text-slate-300">#10B981</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 2: Telemetry / Live Metrics (1 col) -->
+      <div class="p-6 rounded-2xl bg-surface-card border border-surface-border relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-300">
+        <div class="flex justify-between items-start mb-6">
+          <div class="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            <i data-lucide="gauge" class="w-6 h-6"></i>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">
+            <i data-lucide="trending-up" class="w-3 h-3"></i> 99.8%
+          </span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-1">WCAG AAA Contrast</h3>
+        <p class="text-xs text-slate-400 mb-4">Real-time optical legibility audit.</p>
+        <div class="mt-4 flex items-baseline gap-2">
+          <span class="text-3xl font-extrabold text-white font-mono">14.2:1</span>
+          <span class="text-xs text-slate-500">ratio</span>
+        </div>
+      </div>
+
+      <!-- Bento 3: Vector Math / SVG (1 col) -->
+      <div class="p-6 rounded-2xl bg-surface-card border border-surface-border relative overflow-hidden group hover:border-emerald-500/30 transition-all duration-300">
+        <div class="flex justify-between items-start mb-6">
+          <div class="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <i data-lucide="pen-tool" class="w-6 h-6"></i>
+          </div>
+          <span class="text-xs font-mono text-slate-400">Vector</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-1">Pure SVG Output</h3>
+        <p class="text-xs text-slate-400 mb-4">Lossless rendering at any scale.</p>
+        <div class="w-full h-12 flex items-center justify-center bg-white/[0.02] rounded-lg border border-white/5">
+          <svg class="w-8 h-8 text-emerald-400 animate-spin" style="animation-duration: 8s;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="12 2 2 7 12 12 22 7 12 2" />
+            <polyline points="2 17 12 22 22 17" />
+            <polyline points="2 12 12 17 22 12" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Bento 4: Interactive Slide Decks (1 col) -->
+      <div class="p-6 rounded-2xl bg-surface-card border border-surface-border relative overflow-hidden group hover:border-purple-500/30 transition-all duration-300">
+        <div class="p-3 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 w-fit mb-4">
+          <i data-lucide="presentation" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-1">16:9 Pitch Decks</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Standalone presentations with keyboard events & PDF print styling.
+        </p>
+      </div>
+
+      <!-- Bento 5: Design Systems (3 cols) -->
+      <div class="md:col-span-2 lg:col-span-3 p-6 rounded-2xl bg-surface-card border border-surface-border relative overflow-hidden group hover:border-purple-500/30 transition-all duration-300">
+        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+          <div>
+            <h3 class="text-xl font-bold text-white mb-1">150+ Curated Brand Design Presets</h3>
+            <p class="text-xs text-slate-400">Instantly switch between Linear, Swiss, Brutalist, and Editorial aesthetics.</p>
+          </div>
+          <button class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-xs font-mono text-purple-300 w-fit">
+            View All Presets &rarr;
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-4 rounded-xl bg-black/40 border border-white/5 hover:border-white/10 transition-all">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+              <span class="text-sm font-semibold text-white">Linear Dark</span>
+            </div>
+            <p class="text-xs text-slate-400">Precision engineering, dark slate, glowing accents.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-white/5 hover:border-white/10 transition-all">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-red-500"></span>
+              <span class="text-sm font-semibold text-white">Swiss Minimalist</span>
+            </div>
+            <p class="text-xs text-slate-400">High contrast, typographic grid, strict geometry.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-white/5 hover:border-white/10 transition-all">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              <span class="text-sm font-semibold text-white">Neo-Brutalist</span>
+            </div>
+            <p class="text-xs text-slate-400">Thick borders, hard drop shadows, playful pop.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
