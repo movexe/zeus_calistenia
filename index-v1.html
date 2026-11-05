@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Entrená calistenia en Zeuz: clases guiadas, progresiones para todos los niveles y una comunidad para dominar tu peso corporal.">
+  <meta name="theme-color" content="#332E2C">
+  <link rel="icon" type="image/png" href="assets/Logo%20zeuz%20calistenia.png">
+  <script src="site-config.js"></script>
+  <title>Zeuz Calistenia — El Olimpo del Entrenamiento con Peso Corporal</title>
+
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+  <script src="assets/lucide.min.js"></script>
+
+
+
+  <style>
+    body { font-family: 'Figtree', sans-serif; background-color: #FAF9F6; color: #332E2C; }
+    h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+    .page-view { display: none; opacity: 0; transition: opacity 0.25s ease-in-out; }
+    .page-view.active { display: block; opacity: 1; }
+    .rustic-border { border: 1px solid rgba(51, 46, 44, 0.12); }
+    .gold-gradient { background: linear-gradient(135deg, #E6BA6E 0%, #D09F50 50%, #B8863B 100%); }
+    .hero-pattern {
+      background-color: #332E2C;
+      background-image: radial-gradient(circle at 15% 25%, rgba(208, 159, 80, 0.18) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 75%, rgba(112, 150, 135, 0.15) 0%, transparent 45%);
+    }
+  </style>
+<noscript><style>.page-view { display: block; opacity: 1; }</style></noscript>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-brand-accent selection:text-white">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-brand-canvas/95 backdrop-blur-md border-b border-brand-primary/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+      <a href="#inicio" onclick="navigateTo('inicio')" class="flex items-center gap-2 sm:gap-3 min-w-0 group">
+        <div class="h-14 w-auto flex items-center justify-center p-1 rounded-xl bg-brand-primary/5 group-hover:bg-brand-accent/10 transition-colors">
+          <img src="assets/Logo zeuz calistenia.png" alt="Zeuz Calistenia Logo" class="h-12 w-auto object-contain transition-transform group-hover:scale-105 duration-200">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading font-extrabold text-sm sm:text-xl tracking-tight text-brand-primary leading-none">
+            ZEUZ <span class="text-brand-accent">CALISTENIA</span>
+          </span>
+          <span class="text-[8px] sm:text-[10px] font-semibold tracking-widest text-brand-secondary uppercase mt-0.5">El Olimpo del Peso Corporal</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+        <button onclick="navigateTo('inicio')" id="nav-inicio" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold transition-all text-brand-accent bg-brand-primary/5">Inicio</button>
+        <button onclick="navigateTo('clases')" id="nav-clases" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-brand-primary/80 hover:text-brand-primary hover:bg-brand-primary/5 transition-all">Clases</button>
+        <button onclick="navigateTo('entrenador')" id="nav-entrenador" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-brand-primary/80 hover:text-brand-primary hover:bg-brand-primary/5 transition-all">Entrenador</button>
+        <button onclick="navigateTo('tienda')" id="nav-tienda" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-brand-primary/80 hover:text-brand-primary hover:bg-brand-primary/5 transition-all">Tienda</button>
+        <button onclick="navigateTo('nosotros')" id="nav-nosotros" class="nav-link px-3.5 py-2 rounded-lg text-sm font-semibold text-brand-primary/80 hover:text-brand-primary hover:bg-brand-primary/5 transition-all">Nosotros</button>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="toggleCartDrawer()" aria-label="Abrir o cerrar carrito" class="relative p-2.5 rounded-xl bg-white border border-brand-primary/10 text-brand-primary hover:border-brand-accent hover:text-brand-accent transition-all shadow-sm">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="cartBadgeCount" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-brand-accent text-white font-bold text-[11px] flex items-center justify-center shadow">0</span>
+        </button>
+        <button onclick="openEnrollmentModal()" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl gold-gradient text-brand-primary font-heading font-bold text-sm shadow-gold hover:opacity-95 transition-all transform hover:-translate-y-0.5">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>Consultar inscripción</span>
+        </button>
+        <button onclick="toggleMobileMenu()" aria-label="Abrir o cerrar menú" class="md:hidden p-2.5 rounded-xl bg-white border border-brand-primary/10 text-brand-primary">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden border-t border-brand-primary/10 bg-brand-canvas px-4 pt-3 pb-6 space-y-2 shadow-lg">
+      <button onclick="navigateTo('inicio'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-brand-primary hover:bg-brand-primary/5">Inicio</button>
+      <button onclick="navigateTo('clases'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-brand-primary hover:bg-brand-primary/5">Clases & Precios</button>
+      <button onclick="navigateTo('entrenador'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-brand-primary hover:bg-brand-primary/5">Entrenador</button>
+      <button onclick="navigateTo('tienda'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-brand-primary hover:bg-brand-primary/5">Tienda</button>
+      <button onclick="navigateTo('nosotros'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg text-base font-semibold text-brand-primary hover:bg-brand-primary/5">Nosotros</button>
+      <div class="pt-2">
+        <button onclick="openEnrollmentModal(); toggleMobileMenu()" class="w-full py-3 rounded-xl gold-gradient text-brand-primary font-heading font-bold text-center shadow-gold flex items-center justify-center gap-2">
+          <i data-lucide="zap" class="w-4 h-4"></i><span>Consultar inscripción</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+
+    <!-- VIEW: INICIO -->
+    <div id="view-inicio" class="page-view active">
+
+      <!-- HERO SECTION -->
+      <section class="hero-pattern text-brand-canvas py-20 lg:py-28 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-brand-accent text-xs font-semibold tracking-wide">
+                <i data-lucide="flame" class="w-3.5 h-3.5 fill-current text-brand-accent"></i>
+                <span>LA 1° COMUNIDAD CALISTÉNICA DE LA CIUDAD</span>
+              </div>
+              <h1 class="text-4xl sm:text-6xl font-heading font-extrabold text-white tracking-tight leading-[1.1]">
+                Despierta tu <span style="background:linear-gradient(135deg,#E6BA6E,#D09F50,#B8863B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">fuerza divina</span> con peso corporal.
+              </h1>
+              <p class="text-brand-bgAccent text-base sm:text-lg max-w-2xl leading-relaxed font-light">
+                En Zeuz no necesitás pesas gigantes ni máquinas aburridas. Dominamos la gravedad en <strong>2 salas indoor climatizadas</strong> y un <strong>patio al aire libre</strong> con el mejor ambiente y un coach que no te deja caer.
+              </p>
+              <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                <button onclick="openEnrollmentModal()" class="w-full sm:w-auto px-8 py-4 rounded-xl gold-gradient text-brand-primary font-heading font-bold text-base shadow-gold hover:scale-105 transition-all flex items-center justify-center gap-2">
+                  <i data-lucide="zap" class="w-5 h-5"></i><span>Consultar inscripción</span>
+                </button>
+                <button onclick="navigateTo('clases')" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-base transition-all flex items-center justify-center gap-2">
+                  <span>Ver Clases y Precios</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <div class="pt-6 grid grid-cols-3 gap-3 border-t border-white/10 text-xs sm:text-sm text-brand-bgAccent">
+                <div class="flex items-center gap-2"><i data-lucide="wind" class="w-4 h-4 text-brand-secondary"></i><span>Aire Acondicionado</span></div>
+                <div class="flex items-center gap-2"><i data-lucide="sun" class="w-4 h-4 text-brand-accent"></i><span>Patio Outdoor</span></div>
+                <div class="flex items-center gap-2"><i data-lucide="bath" class="w-4 h-4 text-brand-secondary"></i><span>Baños & Duchas</span></div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5">
+              <div class="relative mx-auto max-w-md bg-brand-darkSurface border border-brand-accent/30 rounded-3xl p-6 shadow-2xl overflow-hidden">
+                <div class="absolute -top-16 -right-16 w-44 h-44 bg-brand-accent/20 rounded-full blur-3xl"></div>
+                <div class="relative z-10 space-y-4">
+                  <div class="flex justify-between items-center pb-4 border-b border-white/10">
+                    <span class="text-xs font-mono text-brand-accent uppercase">Instalaciones Zeus</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Concordia, ER
+                    </span>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center gap-3">
+                      <div class="p-2.5 rounded-lg bg-brand-accent/20 text-brand-accent"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+                      <div><h4 class="font-bold text-white text-sm">2 Salas Indoor Climatizadas</h4><p class="text-xs text-slate-400">Barras, anillas olímpicas, paralelas y piso de impacto.</p></div>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center gap-3">
+                      <div class="p-2.5 rounded-lg bg-brand-secondary/20 text-brand-secondary"><i data-lucide="trees" class="w-5 h-5"></i></div>
+                      <div><h4 class="font-bold text-white text-sm">Patio Calisténico al Aire Libre</h4><p class="text-xs text-slate-400">Para entrenar bajo el sol y sentir el poder natural.</p></div>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-white/5 border border-white/5 flex items-center gap-3">
+                      <div class="p-2.5 rounded-lg bg-brand-accent/20 text-brand-accent"><i data-lucide="pill" class="w-5 h-5"></i></div>
+                      <div><h4 class="font-bold text-white text-sm">Tienda de Suplementos & Merch</h4><p class="text-xs text-slate-400">Creatina, proteínas y remeras oficiales.</p></div>
+                    </div>
+                  </div>
+                  <div class="pt-2 text-center">
+                    <p class="text-[11px] text-brand-bgAccent italic font-serif">"No necesitas alas para volar: necesitas dominar la barra." — Coach Zeus</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NUESTRA HISTORIA -->
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent font-semibold text-xs uppercase">
+                <i data-lucide="history" class="w-3.5 h-3.5"></i><span>Nuestra Historia Real</span>
+              </div>
+              <h2 class="text-3xl sm:text-4xl font-heading font-bold text-brand-primary leading-tight">
+                De entrenar solo en una plaza pública a fundar el templo de la calistenia.
+              </h2>
+              <p class="text-slate-600 text-base leading-relaxed">
+                Todo comenzó con una barra oxidada en la plaza del barrio. Un día, nuestro fundador comenzó a entrenar dominadas y fondos con su peso corporal. La gente pasaba, se detenía y preguntaba: <em>"¿Che, me enseñás a hacer eso?"</em>
+              </p>
+              <p class="text-slate-600 text-base leading-relaxed">
+                Lo que empezó como un grupo de 3 amigos se transformó en la <strong>primer comunidad calisténica oficial de la ciudad</strong>. Hoy contamos con nuestro propio espacio con 2 salas indoor, patio exterior, aire acondicionado y la misma pasión de aquel primer día.
+              </p>
+              <button onclick="navigateTo('nosotros')" class="inline-flex items-center gap-2 font-heading font-bold text-brand-accent hover:text-brand-accentHover text-sm">
+                <span>Conocer más sobre nuestro viaje</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="p-8 rounded-3xl bg-brand-canvas rustic-border shadow-rustic space-y-6">
+              <h3 class="font-heading font-bold text-xl text-brand-primary flex items-center gap-2">
+                <i data-lucide="award" class="w-5 h-5 text-brand-accent"></i><span>El Camino del Rayo</span>
+              </h3>
+              <div class="space-y-4 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-brand-primary/10">
+                <div class="relative pl-8">
+                  <div class="absolute left-1.5 top-1 w-4 h-4 rounded-full bg-brand-secondary border-2 border-white"></div>
+                  <span class="text-xs font-mono font-bold text-brand-secondary">Fase 1 — La Plaza</span>
+                  <h4 class="font-bold text-brand-primary text-sm">1 entrenador, 1 barra y mucho barro</h4>
+                  <p class="text-xs text-slate-500">Entrenando bajo el sol y lluvia, compartiendo técnica con quien se acercara.</p>
+                </div>
+                <div class="relative pl-8">
+                  <div class="absolute left-1.5 top-1 w-4 h-4 rounded-full bg-brand-accent border-2 border-white"></div>
+                  <span class="text-xs font-mono font-bold text-brand-accent">Fase 2 — La Tribu</span>
+                  <h4 class="font-bold text-brand-primary text-sm">+50 atletas entrenando en comunidad</h4>
+                  <p class="text-xs text-slate-500">El espacio público quedó chico; nació la necesidad de un hogar propio.</p>
+                </div>
+                <div class="relative pl-8">
+                  <div class="absolute left-1.5 top-1 w-4 h-4 rounded-full bg-brand-primary border-2 border-white"></div>
+                  <span class="text-xs font-mono font-bold text-brand-primary">Fase 3 — Zeuz Calistenia</span>
+                  <h4 class="font-bold text-brand-primary text-sm">Sede propia: 2 salas + patio outdoor</h4>
+                  <p class="text-xs text-slate-500">Equipamiento profesional, aire acondicionado, suplementación y vestuarios.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICIOS -->
+      <section class="py-20 bg-brand-canvas border-t border-brand-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span class="text-xs font-mono font-bold text-brand-secondary uppercase tracking-widest">Lo que te ofrecemos</span>
+            <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-primary">Instalaciones y Servicios de Primera</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-8 rounded-2xl bg-white rustic-border shadow-sm hover:shadow-rustic transition-all group">
+              <div class="w-14 h-14 rounded-2xl bg-brand-primary/5 text-brand-primary group-hover:bg-brand-accent group-hover:text-white transition-colors flex items-center justify-center mb-6"><i data-lucide="dumbbell" class="w-7 h-7"></i></div>
+              <h3 class="text-xl font-heading font-bold text-brand-primary mb-3">Clases Guiadas Indoor & Outdoor</h3>
+              <p class="text-sm text-slate-500 leading-relaxed mb-6">2 salas cubiertas con climatización y patio al aire libre con estructura de barras y anillas olímpicas.</p>
+              <ul class="space-y-2 text-xs text-slate-600 border-t border-brand-primary/10 pt-4">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Niveles desde inicial hasta avanzado</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Corrección postural constante</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Grupos reducidos con buena vibra</li>
+              </ul>
+            </div>
+            <div class="p-8 rounded-2xl bg-white rustic-border shadow-sm hover:shadow-rustic transition-all group">
+              <div class="w-14 h-14 rounded-2xl bg-brand-primary/5 text-brand-primary group-hover:bg-brand-secondary group-hover:text-white transition-colors flex items-center justify-center mb-6"><i data-lucide="user-check" class="w-7 h-7"></i></div>
+              <h3 class="text-xl font-heading font-bold text-brand-primary mb-3">Coach Dedicado a tu Proceso</h3>
+              <p class="text-sm text-slate-500 leading-relaxed mb-6">Nuestro entrenador siempre en sala para guiar tus progresiones, evitar lesiones y motivarte con la disciplina de Zeus.</p>
+              <ul class="space-y-2 text-xs text-slate-600 border-t border-brand-primary/10 pt-4">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Planificación por objetivos reales</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Adaptación según tu nivel</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Cero ego, máxima superación</li>
+              </ul>
+            </div>
+            <div class="p-8 rounded-2xl bg-white rustic-border shadow-sm hover:shadow-rustic transition-all group">
+              <div class="w-14 h-14 rounded-2xl bg-brand-primary/5 text-brand-primary group-hover:bg-brand-accent group-hover:text-white transition-colors flex items-center justify-center mb-6"><i data-lucide="shopping-bag" class="w-7 h-7"></i></div>
+              <h3 class="text-xl font-heading font-bold text-brand-primary mb-3">Tienda de Suplementos & Remeras</h3>
+              <p class="text-sm text-slate-500 leading-relaxed mb-6">Creatinas, proteínas de alta pureza y la indumentaria oficial de la comunidad.</p>
+              <ul class="space-y-2 text-xs text-slate-600 border-t border-brand-primary/10 pt-4">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Asesoramiento de suplementación</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Remeras oversized de alta calidad</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Compra online y retiro en el gym</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA SECTION -->
+      <section class="py-16 bg-brand-primary text-brand-canvas relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 text-center space-y-6 relative z-10">
+          <span class="inline-block px-3 py-1 rounded-full bg-brand-accent text-brand-primary font-bold text-xs uppercase tracking-wider">¡Tu Primera Clase te Espera!</span>
+          <h2 class="text-3xl sm:text-5xl font-heading font-extrabold text-white">¿Listo para dominar tu propio peso corporal?</h2>
+          <p class="text-brand-bgAccent text-base sm:text-lg max-w-2xl mx-auto font-light">Consultá por WhatsApp los planes, los horarios y la disponibilidad de cupos.</p>
+          <button onclick="openEnrollmentModal()" class="px-10 py-4 rounded-xl gold-gradient text-brand-primary font-heading font-extrabold text-base shadow-gold hover:scale-105 transition-all inline-flex items-center gap-3">
+            <i data-lucide="sparkles" class="w-5 h-5"></i><span>Consultar inscripción</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- TESTIMONIOS -->
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+            <span class="text-xs font-mono font-bold text-brand-accent uppercase">Voces del Olimpo</span>
+            <h2 class="text-3xl sm:text-4xl font-heading font-bold text-brand-primary">Lo que dice nuestra comunidad</h2>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-6 rounded-2xl bg-brand-canvas rustic-border space-y-4">
+              <div class="flex text-amber-400 gap-1"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+              <p class="text-sm text-slate-500 italic">"Entré sin poder hacer ni una sola dominada y con dolor de hombro. Hoy saco 10 dominadas estrictas y el ambiente en el patio al atardecer es inmejorable."</p>
+              <div class="pt-2 border-t border-brand-primary/10 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-brand-primary text-white font-bold flex items-center justify-center text-sm">ML</div>
+                <div><h4 class="text-sm font-bold text-brand-primary">Matías López</h4><span class="text-xs text-slate-500">Miembro desde 2023</span></div>
+              </div>
+            </div>
+            <div class="p-6 rounded-2xl bg-brand-canvas rustic-border space-y-4">
+              <div class="flex text-amber-400 gap-1"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+              <p class="text-sm text-slate-500 italic">"El profe mezcla el humor con una exigencia técnica impecable. Tener aire acondicionado en verano y patio afuera es el combo perfecto."</p>
+              <div class="pt-2 border-t border-brand-primary/10 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-brand-secondary text-white font-bold flex items-center justify-center text-sm">CR</div>
+                <div><h4 class="text-sm font-bold text-brand-primary">Camila Rodríguez</h4><span class="text-xs text-slate-500">Miembro desde 2024</span></div>
+              </div>
+            </div>
+            <div class="p-6 rounded-2xl bg-brand-canvas rustic-border space-y-4">
+              <div class="flex text-amber-400 gap-1"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+              <p class="text-sm text-slate-500 italic">"Compré la creatina en la tienda del gym y los chicos te explican cómo tomarla bien. La comunidad es como una familia donde nadie compite con nadie."</p>
+              <div class="pt-2 border-t border-brand-primary/10 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-brand-accent text-brand-primary font-bold flex items-center justify-center text-sm">FG</div>
+                <div><h4 class="text-sm font-bold text-brand-primary">Franco Gómez</h4><span class="text-xs text-slate-500">Miembro desde 2022</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section class="py-20 bg-brand-canvas border-t border-brand-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-6 bg-white p-8 rounded-3xl rustic-border shadow-sm space-y-6">
+              <div>
+                <span class="text-xs font-mono font-bold text-brand-accent uppercase">Hablemos</span>
+                <h3 class="text-2xl font-heading font-bold text-brand-primary mt-1">¿Tienes dudas? Escríbenos</h3>
+              </div>
+              <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                <div><label for="contact-name" class="block text-xs font-bold text-brand-primary uppercase mb-1">Nombre Completo</label><input type="text" required placeholder="Tu nombre" class="w-full px-4 py-3 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" id="contact-name" name="name"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div><label for="contact-phone" class="block text-xs font-bold text-brand-primary uppercase mb-1">WhatsApp</label><input type="tel" required placeholder="+54 9 ..." class="w-full px-4 py-3 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" id="contact-phone" name="phone"></div>
+                  <div><label for="contact-level" class="block text-xs font-bold text-brand-primary uppercase mb-1">Nivel Actual</label><select class="w-full px-4 py-3 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" id="contact-level" name="level"><option>Principiante</option><option>Intermedio</option><option>Avanzado</option></select></div>
+                </div>
+                <div><label for="contact-message" class="block text-xs font-bold text-brand-primary uppercase mb-1">Mensaje</label><textarea rows="3" placeholder="Tu consulta..." class="w-full px-4 py-3 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" id="contact-message" name="message"></textarea></div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-primary hover:bg-brand-darkSurface text-white font-heading font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2">
+                  <i data-lucide="send" class="w-4 h-4 text-brand-accent"></i><span>Consultar por WhatsApp</span>
+                </button>
+              <p class="text-xs text-slate-500">Se abrirá WhatsApp con tus datos. Revisá el mensaje y envialo para realizar la consulta. El cupo se confirma con el gimnasio.</p></form>
+            </div>
+            <div class="lg:col-span-6 space-y-6 flex flex-col justify-between">
+              <div class="space-y-4">
+                <span class="text-xs font-mono font-bold text-brand-secondary uppercase">Donde Encontrarnos</span>
+                <h3 class="text-3xl font-heading font-bold text-brand-primary">Ven a conocer nuestro Olimpo</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="p-4 rounded-2xl bg-white rustic-border"><div class="flex items-center gap-2 text-brand-accent font-bold text-sm mb-1"><i data-lucide="map-pin" class="w-4 h-4"></i><span>Dirección</span></div><p class="text-xs text-slate-600">San Juan 1254, Concordia, Entre Ríos, Argentina</p></div>
+                  <div class="p-4 rounded-2xl bg-white rustic-border"><div class="flex items-center gap-2 text-brand-secondary font-bold text-sm mb-1"><i data-lucide="clock" class="w-4 h-4"></i><span>Horarios</span></div><p class="text-xs text-slate-600">Lun, mié y vie: 07:30 a 22:00<br/>Mar y jue: 13:00 a 21:00<br/>Sáb: 10:00 a 12:00</p></div>
+                </div>
+              </div>
+              <div class="h-56 rounded-3xl bg-brand-primary/5 rustic-border flex flex-col items-center justify-center p-6 text-center">
+                <div class="w-12 h-12 rounded-full bg-brand-accent/20 text-brand-accent flex items-center justify-center mb-2"><i data-lucide="navigation" class="w-6 h-6"></i></div>
+                <h4 class="font-bold text-sm text-brand-primary">Ubicación Central con Patio</h4>
+                <p class="text-xs text-slate-500 max-w-xs mt-1">San Juan 1254, Concordia, Entre Ríos, Argentina.</p>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=San%20Juan%201254%2C%20Concordia%2C%20Entre%20R%C3%ADos%2C%20Argentina" target="_blank" rel="noopener noreferrer" class="mt-3 text-xs font-bold text-brand-accent hover:underline flex items-center gap-1"><span>Abrir en Google Maps</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: CLASES -->
+    <div id="view-clases" class="page-view">
+      <section class="bg-brand-primary text-brand-canvas py-16 text-center">
+        <div class="max-w-4xl mx-auto px-4 space-y-4">
+          <span class="px-3 py-1 rounded-full bg-brand-accent text-brand-primary font-mono text-xs font-bold uppercase">Entrenamiento Guiado</span>
+          <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white">Nuestras Clases & Membresías</h1>
+          <p class="text-brand-bgAccent text-base max-w-xl mx-auto font-light">Metodología progresiva adaptada a tu cuerpo.</p>
+        </div>
+      </section>
+      <section class="py-20 bg-brand-canvas">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+            <article class="p-6 rounded-3xl bg-white rustic-border flex flex-col justify-between shadow-sm">
+              <div><h3 class="text-xl font-heading font-bold text-brand-primary">Clase suelta</h3>
+                <p class="mt-4 mb-4"><span class="text-3xl font-heading font-extrabold text-brand-primary">$6.000</span><span class="block text-xs text-slate-500">ARS · por clase</span></p>
+                <p class="text-sm text-slate-600">El importe se descuenta del total al inscribirte.</p>
+              </div>
+              <button onclick="openEnrollmentModal('Clase suelta')" class="mt-6 w-full py-3 rounded-xl bg-brand-primary hover:bg-brand-darkSurface text-white font-heading font-bold text-xs transition-all">Consultar clase suelta</button>
+            </article>
+            <article class="p-6 rounded-3xl bg-white rustic-border flex flex-col justify-between shadow-sm">
+              <div><h3 class="text-xl font-heading font-bold text-brand-primary">2 días por semana</h3>
+                <p class="mt-4 mb-4"><span class="text-3xl font-heading font-extrabold text-brand-primary">$36.000</span><span class="block text-xs text-slate-500">ARS · por mes</span></p>
+                <p class="text-sm text-slate-600">Entrená dos días por semana.</p>
+              </div>
+              <button onclick="openEnrollmentModal('Plan 2 Días')" class="mt-6 w-full py-3 rounded-xl bg-brand-primary hover:bg-brand-darkSurface text-white font-heading font-bold text-xs transition-all">Consultar 2 días por semana</button>
+            </article>
+            <article class="p-6 rounded-3xl bg-white rustic-border flex flex-col justify-between shadow-sm">
+              <div><h3 class="text-xl font-heading font-bold text-brand-primary">3 días por semana</h3>
+                <p class="mt-4 mb-4"><span class="text-3xl font-heading font-extrabold text-brand-primary">$50.000</span><span class="block text-xs text-slate-500">ARS · por mes</span></p>
+                <p class="text-sm text-slate-600">Entrená tres días por semana.</p>
+              </div>
+              <button onclick="openEnrollmentModal('Plan 3 Días')" class="mt-6 w-full py-3 rounded-xl bg-brand-primary hover:bg-brand-darkSurface text-white font-heading font-bold text-xs transition-all">Consultar 3 días por semana</button>
+            </article>
+            <article class="p-6 rounded-3xl bg-white rustic-border flex flex-col justify-between shadow-sm">
+              <div><h3 class="text-xl font-heading font-bold text-brand-primary">4 días por semana</h3>
+                <p class="mt-4 mb-4"><span class="text-3xl font-heading font-extrabold text-brand-primary">$53.000</span><span class="block text-xs text-slate-500">ARS · por mes</span></p>
+                <p class="text-sm text-slate-600">Entrená cuatro días por semana.</p>
+              </div>
+              <button onclick="openEnrollmentModal('Plan 4 Días')" class="mt-6 w-full py-3 rounded-xl bg-brand-primary hover:bg-brand-darkSurface text-white font-heading font-bold text-xs transition-all">Consultar 4 días por semana</button>
+            </article>
+            <article class="p-6 rounded-3xl bg-white rustic-border flex flex-col justify-between shadow-sm">
+              <div><h3 class="text-xl font-heading font-bold text-brand-primary">Pase libre</h3>
+                <p class="mt-4 mb-4"><span class="text-3xl font-heading font-extrabold text-brand-primary">$58.000</span><span class="block text-xs text-slate-500">ARS · por mes</span></p>
+                <p class="text-sm text-slate-600">Acceso en los días y horarios de apertura.</p>
+              </div>
+              <button onclick="openEnrollmentModal('Plan Pase Libre')" class="mt-6 w-full py-3 rounded-xl bg-brand-primary hover:bg-brand-darkSurface text-white font-heading font-bold text-xs transition-all">Consultar pase libre</button>
+            </article>
+          </div>
+          <p class="mt-6 text-sm text-slate-600">La clase suelta cuesta $6.000 y se descuenta del total al inscribirte. No hay clase de prueba gratuita.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: ENTRENADOR -->
+    <div id="view-entrenador" class="page-view">
+      <section class="hero-pattern text-brand-canvas py-16 text-center">
+        <div class="max-w-4xl mx-auto px-4 space-y-4">
+          <span class="px-3 py-1 rounded-full bg-brand-accent text-brand-primary font-mono text-xs font-bold uppercase">Liderazgo & Técnica</span>
+          <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white">Conoce al Entrenador</h1>
+          <p class="text-brand-bgAccent text-base max-w-xl mx-auto font-light">De entrenar solo con una barra oxidada a forjar titanes de la calistenia.</p>
+        </div>
+      </section>
+      <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="p-8 rounded-3xl bg-brand-canvas rustic-border text-center space-y-6 shadow-rustic">
+              <div class="w-36 h-36 rounded-full gold-gradient p-1 mx-auto shadow-gold"><div class="w-full h-full rounded-full bg-brand-primary flex items-center justify-center text-white"><i data-lucide="user" class="w-16 h-16 text-brand-accent"></i></div></div>
+              <div><h3 class="text-2xl font-heading font-bold text-brand-primary">Coach "Zeus"</h3><span class="text-xs font-mono font-bold text-brand-accent uppercase">Fundador & Head Coach</span></div>
+              <div class="grid grid-cols-3 gap-2 border-t border-brand-primary/10 pt-4 text-center">
+                <div><span class="block text-xl font-heading font-bold text-brand-primary">+8</span><span class="text-[10px] text-slate-500 uppercase">Años Exp.</span></div>
+                <div><span class="block text-xl font-heading font-bold text-brand-primary">+500</span><span class="text-[10px] text-slate-500 uppercase">Alumnos</span></div>
+                <div><span class="block text-xl font-heading font-bold text-brand-primary">100%</span><span class="text-[10px] text-slate-500 uppercase">Pasión</span></div>
+              </div>
+            </div>
+            <div class="space-y-6">
+              <h2 class="text-3xl sm:text-4xl font-heading font-bold text-brand-primary leading-tight">"Cualquiera puede levantar una mancuerna. Dominar tu propio cuerpo en el aire es una obra de arte."</h2>
+              <p class="text-slate-600 text-base leading-relaxed">Mi viaje empezó hace más de 8 años en la plaza del barrio, sin dinero para gimnasios caros buscando fuerza real, agilidad y salud articular. La calistenia transformó mi vida.</p>
+              <p class="text-slate-600 text-base leading-relaxed">En mis clases no encontrarás gritos militares ni egos tóxicos. Encontrarás técnica milimétrica y el toque de humor mitológico para disfrutar cada repetición.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: TIENDA -->
+    <div id="view-tienda" class="page-view">
+      <section class="bg-brand-primary text-brand-canvas py-16 text-center">
+        <div class="max-w-4xl mx-auto px-4 space-y-4">
+          <span class="px-3 py-1 rounded-full bg-brand-accent text-brand-primary font-mono text-xs font-bold uppercase">Suplementos & Indumentaria</span>
+          <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white">La Tienda del Olimpo</h1>
+        </div>
+      </section>
+      <section class="py-20 bg-brand-canvas">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="p-6 rounded-3xl bg-white rustic-border shadow-sm flex flex-col justify-between group hover:shadow-rustic transition-all"><div><div class="h-48 rounded-2xl bg-brand-primary/5 flex items-center justify-center mb-4"><div class="w-20 h-20 rounded-2xl bg-brand-accent/20 text-brand-accent flex items-center justify-center"><i data-lucide="zap" class="w-10 h-10"></i></div></div><span class="text-[11px] font-mono font-bold text-brand-secondary uppercase">Suplemento</span><h3 class="font-heading font-bold text-lg text-brand-primary mt-1">Creatina Creapure 300g</h3><p class="text-xs text-slate-600 mt-1">100% Pura, máxima absorción para potencia explosiva.</p></div><div class="pt-4 border-t border-brand-primary/10 mt-4 flex items-center justify-between"><div><span class="text-xs text-slate-400 block">Precio</span><span class="font-heading font-extrabold text-xl text-brand-primary">$28.500</span></div><button onclick="addToCart('Creatina 300g', 28500)" class="px-4 py-2.5 rounded-xl gold-gradient text-brand-primary font-bold text-xs shadow hover:scale-105 transition-all flex items-center gap-1.5"><i data-lucide="plus" class="w-4 h-4"></i><span>Añadir</span></button></div></div>
+            <div class="p-6 rounded-3xl bg-white rustic-border shadow-sm flex flex-col justify-between group hover:shadow-rustic transition-all"><div><div class="h-48 rounded-2xl bg-brand-primary/5 flex items-center justify-center mb-4"><div class="w-20 h-20 rounded-2xl bg-brand-secondary/20 text-brand-secondary flex items-center justify-center"><i data-lucide="shield" class="w-10 h-10"></i></div></div><span class="text-[11px] font-mono font-bold text-brand-secondary uppercase">Suplemento</span><h3 class="font-heading font-bold text-lg text-brand-primary mt-1">Proteína Whey Isolada 1kg</h3><p class="text-xs text-slate-600 mt-1">26g de proteína por scoop, 0g azúcar añadida.</p></div><div class="pt-4 border-t border-brand-primary/10 mt-4 flex items-center justify-between"><div><span class="text-xs text-slate-400 block">Precio</span><span class="font-heading font-extrabold text-xl text-brand-primary">$34.000</span></div><button onclick="addToCart('Whey 1kg', 34000)" class="px-4 py-2.5 rounded-xl gold-gradient text-brand-primary font-bold text-xs shadow hover:scale-105 transition-all flex items-center gap-1.5"><i data-lucide="plus" class="w-4 h-4"></i><span>Añadir</span></button></div></div>
+            <div class="p-6 rounded-3xl bg-white rustic-border shadow-sm flex flex-col justify-between group hover:shadow-rustic transition-all"><div><div class="h-48 rounded-2xl bg-brand-primary/5 flex items-center justify-center mb-4"><div class="w-20 h-20 rounded-2xl bg-brand-primary/20 text-brand-primary flex items-center justify-center"><i data-lucide="shirt" class="w-10 h-10"></i></div></div><span class="text-[11px] font-mono font-bold text-brand-accent uppercase">Indumentaria</span><h3 class="font-heading font-bold text-lg text-brand-primary mt-1">Remera Oversized Zeuz Calistenia</h3><p class="text-xs text-slate-600 mt-1">Algodón 24/1 premium, estampa en serigrafía dorada.</p></div><div class="pt-4 border-t border-brand-primary/10 mt-4 flex items-center justify-between"><div><span class="text-xs text-slate-400 block">Precio</span><span class="font-heading font-extrabold text-xl text-brand-primary">$22.000</span></div><button onclick="addToCart('Remera Zeuz', 22000)" class="px-4 py-2.5 rounded-xl gold-gradient text-brand-primary font-bold text-xs shadow hover:scale-105 transition-all flex items-center gap-1.5"><i data-lucide="plus" class="w-4 h-4"></i><span>Añadir</span></button></div></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: NOSOTROS -->
+    <div id="view-nosotros" class="page-view">
+      <section class="hero-pattern text-brand-canvas py-16 text-center">
+        <div class="max-w-4xl mx-auto px-4 space-y-4">
+          <span class="px-3 py-1 rounded-full bg-brand-accent text-brand-primary font-mono text-xs font-bold uppercase">Comunidad & Valores</span>
+          <h1 class="text-4xl sm:text-5xl font-heading font-extrabold text-white">Nuestra Esencia</h1>
+          <p class="text-brand-bgAccent text-base max-w-xl mx-auto font-light">Más que un gimnasio: una hermandad unida por el peso corporal y la superación personal.</p>
+        </div>
+      </section>
+      <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-6 rounded-2xl bg-brand-canvas rustic-border space-y-3"><span class="font-heading font-extrabold text-3xl text-brand-accent">2019</span><h3 class="font-bold text-base text-brand-primary">La Primera Barra</h3><p class="text-xs text-slate-600 leading-relaxed">Entrenamientos solitarios en la plaza principal. La curiosidad del barrio comenzó a reunir a las primeras 10 personas.</p></div>
+            <div class="p-6 rounded-2xl bg-brand-canvas rustic-border space-y-3"><span class="font-heading font-extrabold text-3xl text-brand-secondary">2022</span><h3 class="font-bold text-base text-brand-primary">Nace la Comunidad</h3><p class="text-xs text-slate-600 leading-relaxed">El primer torneo barrial de calistenia reunió 100 personas y decidimos dar el gran salto.</p></div>
+            <div class="p-6 rounded-2xl bg-brand-canvas rustic-border space-y-3"><span class="font-heading font-extrabold text-3xl text-brand-primary">2026</span><h3 class="font-bold text-base text-brand-primary">El Olimpo Propio</h3><p class="text-xs text-slate-600 leading-relaxed">Inauguramos nuestra sede con 2 salas climatizadas, patio al aire libre y +500 miembros activos.</p></div>
+          </div>
+          <div class="pt-8 border-t border-brand-primary/10">
+            <h3 class="text-2xl font-heading font-bold text-brand-primary text-center mb-8">Nuestros 4 Mandamientos</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div class="p-6 rounded-2xl bg-white rustic-border text-center space-y-2"><div class="w-10 h-10 rounded-full bg-brand-primary/10 text-brand-primary flex items-center justify-center mx-auto"><i data-lucide="users" class="w-5 h-5"></i></div><h4 class="font-bold text-sm text-brand-primary">1. Cero Ego</h4><p class="text-xs text-slate-500">Aquí nadie mira mal al que recién empieza.</p></div>
+              <div class="p-6 rounded-2xl bg-white rustic-border text-center space-y-2"><div class="w-10 h-10 rounded-full bg-brand-accent/20 text-brand-accent flex items-center justify-center mx-auto"><i data-lucide="target" class="w-5 h-5"></i></div><h4 class="font-bold text-sm text-brand-primary">2. Técnica Pura</h4><p class="text-xs text-slate-500">Una rep perfecta vale más que 10 tramposas.</p></div>
+              <div class="p-6 rounded-2xl bg-white rustic-border text-center space-y-2"><div class="w-10 h-10 rounded-full bg-brand-secondary/20 text-brand-secondary flex items-center justify-center mx-auto"><i data-lucide="heart" class="w-5 h-5"></i></div><h4 class="font-bold text-sm text-brand-primary">3. Hermandad</h4><p class="text-xs text-slate-500">Celebramos cada logro como si fuera nuestro.</p></div>
+              <div class="p-6 rounded-2xl bg-white rustic-border text-center space-y-2"><div class="w-10 h-10 rounded-full bg-brand-primary/10 text-brand-primary flex items-center justify-center mx-auto"><i data-lucide="zap" class="w-5 h-5"></i></div><h4 class="font-bold text-sm text-brand-primary">4. Constancia</h4><p class="text-xs text-slate-500">El rayo cae donde se trabaja todos los días.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-primary text-brand-canvas pt-16 pb-12 border-t border-brand-accent/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3"><img src="assets/Logo zeuz calistenia.png" alt="Logo Zeuz" class="h-10 w-auto bg-white/10 p-1 rounded-lg"><span class="font-heading font-extrabold text-lg text-white">ZEUZ <span class="text-brand-accent">CALISTENIA</span></span></div>
+          <p class="text-xs text-brand-bgAccent leading-relaxed">La primer comunidad de calistenia de la ciudad. 2 salas indoor climatizadas y patio exterior.</p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="https://www.instagram.com/zeuzcalistenia.arg/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-white/5 hover:bg-brand-accent hover:text-brand-primary text-brand-bgAccent transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+        <div class="space-y-3"><h4 class="font-heading font-bold text-sm text-brand-accent uppercase tracking-wider">Explorar</h4><ul class="space-y-2 text-xs text-brand-bgAccent"><li><button onclick="navigateTo('inicio')" class="hover:text-white transition-colors">Inicio</button></li><li><button onclick="navigateTo('clases')" class="hover:text-white transition-colors">Clases & Precios</button></li><li><button onclick="navigateTo('entrenador')" class="hover:text-white transition-colors">Entrenador</button></li><li><button onclick="navigateTo('tienda')" class="hover:text-white transition-colors">Tienda</button></li><li><button onclick="navigateTo('nosotros')" class="hover:text-white transition-colors">Nosotros</button></li></ul></div>
+        <div class="space-y-3"><h4 class="font-heading font-bold text-sm text-brand-accent uppercase tracking-wider">Instalaciones</h4><ul class="space-y-2 text-xs text-brand-bgAccent"><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-secondary"></i> 2 Salas Indoor Climatizadas</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-secondary"></i> Patio Calisténico Outdoor</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-secondary"></i> Vestuarios y Duchas</li><li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-secondary"></i> Tienda de Suplementos</li></ul></div>
+        <div class="space-y-3"><h4 class="font-heading font-bold text-sm text-brand-accent uppercase tracking-wider">Contacto</h4><p class="text-xs text-brand-bgAccent">San Juan 1254, Concordia, Entre Ríos</p><p class="text-xs text-brand-bgAccent">+54 9 341 372-6000</p><p class="text-xs text-brand-bgAccent">Lun, mié y vie: 07:30 a 22:00<br/>Mar y jue: 13:00 a 21:00<br/>Sáb: 10:00 a 12:00</p></div>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+        <span>&copy; 2026 Zeuz Calistenia. Todos los derechos reservados.</span>
+        <span class="text-brand-bgAccent/60">Concordia, Entre Ríos</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
+    <div onclick="toggleCartDrawer()" aria-label="Abrir o cerrar carrito" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div class="absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 pointer-events-auto">
+      <div class="p-6 border-b border-brand-primary/10 flex items-center justify-between bg-brand-canvas">
+        <div class="flex items-center gap-2"><i data-lucide="shopping-bag" class="w-5 h-5 text-brand-accent"></i><h3 class="font-heading font-bold text-base text-brand-primary">Tu Carrito</h3></div>
+        <button onclick="toggleCartDrawer()" aria-label="Abrir o cerrar carrito" class="p-2 rounded-lg text-slate-400 hover:text-brand-primary"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div id="cartItemsList" class="p-6 overflow-y-auto flex-grow space-y-4"></div>
+      <div class="p-6 border-t border-brand-primary/10 bg-brand-canvas space-y-4">
+        <div class="flex justify-between items-center text-sm"><span class="text-slate-500 font-medium">Subtotal</span><span id="cartTotal" class="font-heading font-extrabold text-xl text-brand-primary">$0</span></div>
+        <button onclick="handleCheckout()" class="w-full py-3.5 rounded-xl gold-gradient text-brand-primary font-heading font-extrabold text-sm shadow-gold flex items-center justify-center gap-2"><i data-lucide="credit-card" class="w-4 h-4"></i><span>Finalizar por WhatsApp</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENROLLMENT MODAL -->
+  <div id="enrollmentModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl rustic-border shadow-2xl max-w-lg w-full max-h-[90dvh] overflow-y-auto relative">
+      <div class="p-6 bg-brand-primary text-brand-canvas relative">
+        <button onclick="closeEnrollmentModal()" aria-label="Cerrar inscripción" class="absolute top-4 right-4 text-brand-bgAccent hover:text-white p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+
+        <h3 class="text-2xl font-heading font-extrabold text-white">Consulta de inscripción</h3>
+        <p class="text-xs text-brand-bgAccent mt-1">Completa tus datos para consultar disponibilidad.</p>
+      </div>
+      <form onsubmit="handleEnrollmentSubmit(event)" class="p-6 space-y-4">
+        <div><label for="enroll-name" class="block text-xs font-bold text-brand-primary uppercase mb-1">Nombre y Apellido</label><input type="text" required placeholder="Tu nombre" class="w-full px-4 py-2.5 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" id="enroll-name" name="name"></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div><label for="enroll-phone" class="block text-xs font-bold text-brand-primary uppercase mb-1">WhatsApp</label><input type="tel" required placeholder="+54 9 ..." class="w-full px-4 py-2.5 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" id="enroll-phone" name="phone"></div>
+          <div><label for="modalPlanSelect" class="block text-xs font-bold text-brand-primary uppercase mb-1">Plan</label><select id="modalPlanSelect" class="w-full px-4 py-2.5 rounded-xl bg-brand-canvas rustic-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent" name="plan"><option value="Clase suelta">Clase suelta — $6.000</option><option value="Plan 2 Días">2 días por semana — $36.000</option><option value="Plan 3 Días">3 días por semana — $50.000</option><option value="Plan 4 Días">4 días por semana — $53.000</option><option value="Plan Pase Libre">Pase libre — $58.000</option></select></div>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl gold-gradient text-brand-primary font-heading font-extrabold text-sm shadow-gold flex items-center justify-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Consultar inscripción por WhatsApp</span></button>
+      <p class="text-xs text-slate-500">Se abrirá WhatsApp con tus datos. Revisá el mensaje y envialo para realizar la consulta. El cupo se confirma con el gimnasio.</p></form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toastNotification" role="status" aria-live="polite" class="fixed bottom-6 right-6 z-50 hidden p-4 rounded-2xl bg-brand-primary text-white shadow-2xl border border-brand-accent/40 items-center gap-3">
+    <div class="w-8 h-8 rounded-full gold-gradient text-brand-primary flex items-center justify-center font-bold"><i data-lucide="check" class="w-4 h-4"></i></div>
+    <div><h5 id="toastTitle" class="text-xs font-bold text-white">Notificación</h5><p id="toastMessage" class="text-[11px] text-brand-bgAccent">Acción realizada.</p></div>
+  </div>
+
+  <script>
+    window.lucide?.createIcons();
+
+    function navigateTo(viewId) {
+      document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+      const t = document.getElementById(`view-${viewId}`);
+      if (t) { t.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+      document.querySelectorAll('.nav-link').forEach(l => { l.classList.remove('text-brand-accent','bg-brand-primary/5'); l.classList.add('text-brand-primary/80'); });
+      const a = document.getElementById(`nav-${viewId}`);
+      if (a) { a.classList.add('text-brand-accent','bg-brand-primary/5'); a.classList.remove('text-brand-primary/80'); }
+      setTimeout(() => window.lucide?.createIcons(), 50);
+    }
+
+    function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
+
+    let cart = [];
+    function addToCart(name, price) {
+      const ex = cart.find(i => i.name === name);
+      if (ex) ex.qty++; else cart.push({ name, price, qty: 1 });
+      updateCartUI(); showToast('Producto Añadido', `${name} en tu carrito.`);
+    }
+    function changeQty(name, delta) {
+      const item = cart.find(i => i.name === name);
+      if (item) { item.qty += delta; if (item.qty <= 0) cart = cart.filter(i => i.name !== name); }
+      updateCartUI();
+    }
+    function updateCartUI() {
+      const badge = document.getElementById('cartBadgeCount');
+      const list = document.getElementById('cartItemsList');
+      const totalEl = document.getElementById('cartTotal');
+      const total = cart.reduce((a, c) => a + c.qty, 0);
+      badge.textContent = total;
+      if (!cart.length) { list.innerHTML = '<div class="h-40 flex items-center justify-center text-xs text-slate-400">Tu carrito está vacío.</div>'; totalEl.textContent='$0'; return; }
+      let sum = 0;
+      list.innerHTML = cart.map(i => { sum += i.price * i.qty; return `<div class="p-4 rounded-2xl bg-brand-canvas rustic-border flex items-center justify-between"><div><h4 class="text-xs font-bold text-brand-primary">${i.name}</h4><span class="text-xs font-mono text-brand-accent font-bold">$${(i.price*i.qty).toLocaleString()}</span></div><div class="flex items-center gap-2 bg-white rounded-lg p-1 border border-brand-primary/10"><button onclick="changeQty('${i.name}',-1)" class="w-6 h-6 flex items-center justify-center font-bold text-slate-600 hover:bg-slate-100 text-xs">-</button><span class="text-xs font-bold px-1">${i.qty}</span><button onclick="changeQty('${i.name}',1)" class="w-6 h-6 flex items-center justify-center font-bold text-slate-600 hover:bg-slate-100 text-xs">+</button></div></div>`; }).join('');
+      totalEl.textContent = `$${sum.toLocaleString()}`; window.lucide?.createIcons();
+    }
+    function toggleCartDrawer() {
+      const d = document.getElementById('cartDrawer');
+      const p = d.querySelector('div.absolute.top-0.right-0');
+      if (d.classList.contains('pointer-events-none')) { d.classList.remove('pointer-events-none','opacity-0'); d.classList.add('opacity-100'); p.classList.remove('translate-x-full'); }
+      else { p.classList.add('translate-x-full'); d.classList.remove('opacity-100'); d.classList.add('opacity-0','pointer-events-none'); }
+    }
+    function openWhatsApp(message) {
+      const phone = String(window.ZEUZ_CONFIG?.whatsapp || '').replace(/[^0-9]/g, '');
+      if (!/^[1-9][0-9]{7,14}$/.test(phone)) {
+        showToast('Contacto pendiente', 'El WhatsApp del gimnasio todavía no está configurado.');
+        return false;
+      }
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+      return true;
+    }
+    function handleCheckout() {
+      if (!cart.length) { showToast('Carrito Vacío', 'Agrega productos primero.'); return; }
+      const summary = cart.map(i => `${i.qty}x ${i.name} ($${(i.price * i.qty).toLocaleString('es-AR')})`).join('\n');
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      openWhatsApp(`Hola Zeuz, quiero consultar disponibilidad de:\n${summary}\nSubtotal publicado: $${total.toLocaleString('es-AR')}. ¿Me confirman precios y stock?`);
+    }
+    function openEnrollmentModal(plan = 'Clase suelta') {
+      const m = document.getElementById('enrollmentModal'); const s = document.getElementById('modalPlanSelect');
+      if (plan && s) s.value = plan;
+      m.classList.remove('hidden'); m.classList.add('flex');
+    }
+    function closeEnrollmentModal() { const m = document.getElementById('enrollmentModal'); m.classList.add('hidden'); m.classList.remove('flex'); }
+    function handleEnrollmentSubmit(e) {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      openWhatsApp(`Hola Zeuz, soy ${data.get('name')}. Mi WhatsApp es ${data.get('phone')}. Me interesa ${data.get('plan')}. Quiero consultar cupos y precios vigentes.`);
+    }
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      openWhatsApp(`Hola Zeuz, soy ${data.get('name')}. Mi WhatsApp es ${data.get('phone')}. Nivel: ${data.get('level')}. Consulta: ${data.get('message')}`);
+    }
+    function showToast(title, msg) {
+      const t = document.getElementById('toastNotification');
+      document.getElementById('toastTitle').textContent = title;
+      document.getElementById('toastMessage').textContent = msg;
+      t.classList.remove('hidden'); t.classList.add('flex');
+      setTimeout(() => { t.classList.add('hidden'); t.classList.remove('flex'); }, 4000);
+      window.lucide?.createIcons();
+    }
+    updateCartUI();
+  </script>
+</body>
+</html>

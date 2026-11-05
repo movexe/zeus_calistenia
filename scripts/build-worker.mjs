@@ -1,11 +1,13 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+const html = await readFile('dist/index.html', 'utf8');
+const imagePaths = [...new Set([...html.matchAll(/assets\/[^'"<>]+?\.(?:webp|png|jpg)/g)].map(m => decodeURIComponent(m[0])))];
 const files = [
   ['index.html', 'text/html; charset=utf-8'],
   ['site-config.js', 'text/javascript; charset=utf-8'],
   ['assets/site.css', 'text/css; charset=utf-8'],
   ['assets/lucide.min.js', 'text/javascript; charset=utf-8'],
-  ['assets/Logo zeuz calistenia.png', 'image/png'],
+  ...imagePaths.map(path => [path, path.endsWith('.webp') ? 'image/webp' : path.endsWith('.png') ? 'image/png' : 'image/jpeg']),
 ];
 const assets = {};
 for (const [path, type] of files) {
