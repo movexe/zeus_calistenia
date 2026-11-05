@@ -1,57 +1,28 @@
-# ⚡ Zeuz Calistenia — Sitio Web Oficial & Versiones de Producción
+# Zeuz Calistenia — Web de producción
 
-Sitio web interactivo y catálogo de conversión para **Zeuz Calistenia**, gimnasio especializado en entrenamiento con peso corporal con 2 salas cubiertas climatizadas y patio exterior.
+La página principal `index.html` parte de la versión 1 minimalista seleccionada. Las referencias originales se conservan en `index1.html`, `index2.html` (antigua principal) e `index3.html`; no se incluyen en el paquete de producción.
 
-Diseñado y desarrollado bajo los estándares de **OpenDesign Engine** y **ScrollCraft Engine**.
+## Compilar y revisar
 
----
-
-## 🚀 Versiones Disponibles en GitHub Pages
-
-| Versión | Archivo | Concepto & Características Principales |
-| :--- | :--- | :--- |
-| **Versión 2 (Principal)** | [`index.html`](index.html) | **Hero con Profundidad 3D Multicapa**: Parallax interactivo sincronizado con cursor y scroll, logo transparente 1:1, botón flotante de WhatsApp animado y fotos reales. |
-| **Versión 1** | [`index1.html`](index1.html) | **Clean Olympian SPA**: Edición minimalista con paleta Dune & Roti, catálogo de suplementos, carrito y modal de reserva. |
-| **Versión 3** | [`index3.html`](index3.html) | **Dark Editorial Performance**: Árbol interactivo de habilidades (*Muscle-Up, Planche, Handstand*), tour interactivo de instalaciones (2 salas indoor + patio outdoor), simulador de membresías y tienda con WhatsApp checkout. |
-
----
-
-## 🎨 Sistema de Diseño (`DESIGN.md`)
-
-* **Paleta de Color Primaria**:
-  * `Canvas / Basalto`: `#1C1917` / `#F8F6F0`
-  * `Primary (Dune)`: `#332E2C`
-  * `Accent (Roti / Gold)`: `#D09F50`
-  * `Secondary (Oxley)`: `#709687`
-  * `Background Accent (Foggy Gray)`: `#C9CBB4`
-* **Tipografía**:
-  * Títulos: `Poppins` / `Cinzel`
-  * Cuerpo: `Figtree`
-  * Monospace / Tags: `Space Mono`
-
----
-
-## ⚙️ Cómo activar en GitHub Pages
-
-1. Sube este repositorio a tu cuenta de GitHub (`git push -u origin main`).
-2. En GitHub, ve a **Settings** > **Pages** (en el menú lateral izquierdo).
-3. En **Build and deployment** > **Source**, selecciona **Deploy from a branch**.
-4. En **Branch**, selecciona `main` y carpeta `/(root)`. Haz clic en **Save**.
-5. En unos segundos, tu sitio estará publicado en:
-   `https://<tu-usuario>.github.io/<nombre-del-repo>/`
-
----
-
-## 📦 Estructura del Proyecto
-
-```
-├── assets/                          # Logotipo transparente, fotos reales e iconos
-├── index.html                       # Versión 2 (Principal - Parallax 3D Hero)
-├── index1.html                      # Versión 1 (Clean Classic SPA)
-├── index3.html                      # Versión 3 (Dark Editorial Matrix)
-├── DESIGN.md                        # Tokens y especificación de diseño
-├── CLAUDE.md                        # Orquestación de OpenDesign & ScrollCraft
-└── README.md                        # Documentación del proyecto
+```sh
+npm ci
+npm run build
+npm run preview
 ```
 
-© 2026 Zeuz Calistenia. Todos los derechos reservados.
+La salida publicable es **dist/**. Los estilos Tailwind y los iconos Lucide se sirven localmente. Google Fonts sigue siendo un recurso externo.
+
+## Contacto
+
+- WhatsApp: +54 9 341 372-6000, configurado en `site-config.js`.
+- Instagram: https://www.instagram.com/zeuzcalistenia.arg/
+- Dirección: San Juan 1254, Concordia, Entre Ríos, Argentina.
+- No hay descuentos ni cupón promocional.
+
+Los formularios y el carrito preparan mensajes de WhatsApp. El visitante debe enviarlos y el gimnasio confirma la inscripción o pedido; la web no guarda consultas ni procesa pagos.
+
+## Pendientes antes de publicar
+
+Planes y horarios confirmados por el gimnasio. Clase suelta: $6.000, descontable del total al inscribirse; 2 días: $36.000; 3 días: $50.000; 4 días: $53.000; pase libre: $58.000. Sin clase gratuita. Lunes, miércoles y viernes de 7:30 a 22:00; martes y jueves de 13:00 a 21:00; sábados de 10:00 a 12:00. Los precios de los productos de tienda siguen pendientes de confirmar. Revisar que historia, testimonios y descripción del entrenador del diseño original correspondan al gimnasio.
+
+El workflow existente de GitHub Pages ahora instala dependencias, compila y publica únicamente `dist/`. La publicación activa está en https://zeuz-calistenia.nanynomo7.workers.dev/. Se desplegó mediante la API de Cloudflare en el Worker `zeuz-calistenia`. `npm run build:worker` genera `.build/worker.mjs`, que incorpora únicamente los archivos utilizados por la versión 1. Este despliegue utiliza solicitudes de Workers; no es un despliegue de Workers Static Assets. Los límites y el plan de la cuenta Cloudflare aplican. El workflow de GitHub Pages se conserva como alternativa y no es el alojamiento de esta publicación.

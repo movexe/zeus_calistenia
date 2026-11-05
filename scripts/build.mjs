@@ -1,0 +1,10 @@
+import { mkdir, copyFile, cp, writeFile, readFile } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+await mkdir('dist/assets', { recursive: true });
+const result = spawnSync(process.execPath, ['node_modules/tailwindcss/lib/cli.js', '-i', 'styles/input.css', '-o', 'dist/assets/site.css', '--minify'], { stdio: 'inherit' });
+if (result.status !== 0) process.exit(result.status || 1);
+await cp('assets', 'dist/assets', { recursive: true });
+await copyFile('node_modules/lucide/dist/umd/lucide.min.js', 'dist/assets/lucide.min.js');
+for (const file of ['index.html', 'site-config.js']) await copyFile(file, `dist/${file}`);
+await writeFile('dist/.nojekyll', '');
+console.log('Build listo en dist/.');

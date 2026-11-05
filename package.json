@@ -1,0 +1,14 @@
+{
+  "name": "zeuz-calistenia",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "python -m http.server 4173 --directory dist",
+    "build:worker": "npm run build && node scripts/build-worker.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17",
+    "lucide": "0.468.0"
+  }
+}
