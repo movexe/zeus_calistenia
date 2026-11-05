@@ -2,7 +2,7 @@
   "worker": "zeuz-calistenia",
   "account_id": "9c424d803fceb0e2d1f139be7e967068",
   "url": "https://zeuz-calistenia.nanynomo7.workers.dev",
-  "deployment_id": "a5746f7c2b7d4f239b40cbfd6991b781",
+  "deployment_id": "793f3303d0e14eabb9c3ac109293d09e",
   "compatibility_date": "2026-11-04",
   "design_version": 3,
   "custom_domains": [
@@ -15,5 +15,6 @@
     "thaddeus.ns.cloudflare.com"
   ],
   "https_redirect": true,
-  "ssl_mode": "strict"
+  "ssl_mode": "strict",
+  "social_image": "https://zeuscalistenia.com/assets/zeuz-social.jpg"
 }
