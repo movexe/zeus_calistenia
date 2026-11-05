@@ -4,5 +4,16 @@
   "url": "https://zeuz-calistenia.nanynomo7.workers.dev",
   "deployment_id": "a5746f7c2b7d4f239b40cbfd6991b781",
   "compatibility_date": "2026-11-04",
-  "design_version": 3
+  "design_version": 3,
+  "custom_domains": [
+    "zeuscalistenia.com",
+    "www.zeuscalistenia.com"
+  ],
+  "zone_id": "8e2ce10928b41b60eb150cee37fc8e0e",
+  "name_servers": [
+    "raphaela.ns.cloudflare.com",
+    "thaddeus.ns.cloudflare.com"
+  ],
+  "https_redirect": true,
+  "ssl_mode": "strict"
 }
